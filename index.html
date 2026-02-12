@@ -57,6 +57,22 @@
       -webkit-text-fill-color: transparent;
     }
 
+    @keyframes wave {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      50% {
+        transform: translateX(5px);
+      }
+    }
+
+    .animate-wave {
+      animation: wave 1.5s ease-in-out infinite;
+    }
+
     .text-primary {
       text-shadow: 0 0 20px rgba(50, 17, 212, 0.6), 0 0 10px rgba(50, 17, 212, 0.4);
     }
@@ -176,7 +192,11 @@
         <div class="lg:col-span-7">
           <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-primary mb-6">The Journey</h2>
           <h3 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Governance, leadership <span class="italic">&
-              excellence.</span></h3>
+              excellence.</span> <a href="about-eric-sambu.html"
+              class="inline-flex items-center text-sm font-bold text-primary tracking-widest uppercase hover:text-white transition-colors ml-2 align-middle"
+              style="vertical-align: middle;">Read More <i
+                class="material-icons text-sm ml-1 animate-wave">arrow_forward</i></a>
+          </h3>
           <div class="space-y-6 text-slate-300 font-light text-lg leading-relaxed">
             <p>Eric Sambu is a distinguished leader with over 24 years of experience, currently serving as the Managing
               Director of SGA Security Tanzania. His academic journey is marked by a PhD in Management (specializing in
