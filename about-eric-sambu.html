@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>About FCPA Dr Eric Sambu, CPP | Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
@@ -636,6 +637,22 @@
                 <a class="hover:text-primary" href="https://www.linkedin.com/in/eric-sambu-78750b3a/"
                     target="_blank">LinkedIn</a>
             </div>
+            <div class="mt-12 border-t border-primary/10 pt-12">
+                <form id="newsletter-form" class="max-w-xl mx-auto">
+                    <h4 class="font-bold text-lg mb-2 text-white">Stay Updated</h4>
+                    <p class="text-sm text-slate-500 mb-6">Get notified about new publications and insights directly in
+                        your inbox.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 text-left">
+                        <input type="email" required
+                            class="flex-1 bg-primary/5 border border-primary/20 rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary outline-none text-white"
+                            placeholder="Your email address">
+                        <button type="submit"
+                            class="bg-primary text-white font-bold py-4 px-10 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                            <span class="material-icons text-sm">mail</span> Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </footer>
 
@@ -687,6 +704,48 @@
             mobileLinks.forEach(link => {
                 link.addEventListener('click', toggleMenu);
             });
+
+            // Initialize Supabase
+            const supabaseUrl = 'https://uilyvqyeabdukuboqout.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpbHl2cXllYWJkdWt1Ym9xb3V0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NTI1MTYsImV4cCI6MjA4NjUyODUxNn0.1nlUr57xSyb_nz0nzIwiHqL6ilmR_i24m4KgDJH0_EE';
+            const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+            // Newsletter Logic
+            const newsletterForm = document.getElementById('newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const emailInput = newsletterForm.querySelector('input[type="email"]');
+                    const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+                    const email = emailInput ? emailInput.value : '';
+
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Subscribing...';
+                    }
+
+                    const { data, error } = await _supabase
+                        .from('subscribers')
+                        .insert([{ email }]);
+
+                    if (error) {
+                        if (error.code === '23505') { // Unique constraint violation
+                            alert('You are already subscribed!');
+                        } else {
+                            alert('Error subscribing. Please try again.');
+                            console.error(error);
+                        }
+                    } else {
+                        alert('Thank you for subscribing!');
+                        newsletterForm.reset();
+                    }
+
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Subscribe';
+                    }
+                });
+            }
         });
     </script>
 </body>

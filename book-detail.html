@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -259,6 +260,22 @@
                     <a class="text-slate-300 hover:text-primary transition-colors" href="#"><span
                             class="material-icons">share</span></a>
                 </div>
+            </div>
+            <div class="mt-12 border-t border-primary/10 pt-12">
+                <form id="newsletter-form" class="max-w-xl">
+                    <h4 class="font-bold text-lg mb-2">Stay Updated</h4>
+                    <p class="text-sm text-slate-500 mb-6">Get notified about new publications and insights directly in
+                        your inbox.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" required
+                            class="flex-1 bg-primary/5 border border-primary/20 rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary outline-none"
+                            placeholder="Your email address">
+                        <button type="submit"
+                            class="bg-primary text-white font-bold py-4 px-10 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                            <span class="material-icons text-sm">mail</span> Subscribe
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </footer>
@@ -667,7 +684,12 @@
             }
         };
 
-        document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Supabase
+        const supabaseUrl = 'https://uilyvqyeabdukuboqout.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpbHl2cXllYWJkdWt1Ym9xb3V0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NTI1MTYsImV4cCI6MjA4NjUyODUxNn0.1nlUr57xSyb_nz0nzIwiHqL6ilmR_i24m4KgDJH0_EE';
+        const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        document.addEventListener("DOMContentLoaded", async function () {
             const params = new URLSearchParams(window.location.search);
             const title = params.get('title');
 
@@ -796,8 +818,24 @@
                     if (!book.quote) heroQuote.style.display = 'none';
                 }
 
-                // Render Reviews
-                renderReviews(book.reviews);
+                // Fetch Reviews from Supabase
+                async function fetchReviews() {
+                    const { data, error } = await _supabase
+                        .from('reviews')
+                        .select('*')
+                        .eq('book_title', title)
+                        .order('created_at', { ascending: false });
+
+                    if (error) {
+                        console.error('Error fetching reviews:', error);
+                        return [];
+                    }
+                    return data;
+                }
+
+                // Initial load from Supabase
+                const initialReviews = await fetchReviews();
+                renderReviews(initialReviews);
 
                 // Initialize Review Modal Logic
                 const modal = document.getElementById('review-modal');
@@ -855,35 +893,51 @@
                 }
 
                 if (reviewForm) {
-                    reviewForm.addEventListener('submit', (e) => {
+                    reviewForm.addEventListener('submit', async (e) => {
                         e.preventDefault();
+                        const submitBtn = reviewForm.querySelector('button[type="submit"]');
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = 'Submitting...';
+                        }
+
                         const inputs = reviewForm.querySelectorAll('input, textarea');
                         const name = inputs[0].value;
                         const rating = ratingInput ? parseFloat(ratingInput.value) : 5;
                         const text = document.getElementById('review-text').value;
 
-                        const newReview = { name, rating, text };
+                        // Save to Supabase
+                        const { data, error } = await _supabase
+                            .from('reviews')
+                            .insert([
+                                { book_title: title, name, rating, text }
+                            ]);
 
-                        // Add to local data
-                        if (!book.reviews) book.reviews = [];
-                        book.reviews.unshift(newReview);
+                        if (error) {
+                            alert('Error submitting review. Please try again.');
+                            console.error(error);
+                        } else {
+                            // Re-fetch and re-render
+                            const updatedReviews = await fetchReviews();
+                            renderReviews(updatedReviews);
 
-                        // Re-render
-                        renderReviews(book.reviews);
+                            // Update Review Count (Visual only)
+                            const countEl = document.querySelector('.text-sm.text-slate-300');
+                            if (countEl && countEl.textContent.includes('Reviews')) {
+                                countEl.textContent = `${book.rating} (${updatedReviews.length} Reviews)`;
+                            }
 
-                        // Update Review Count (Visual only)
-                        const countEl = document.querySelector('.text-sm.text-slate-300');
-                        if (countEl && countEl.textContent.includes('Reviews')) {
-                            // Extract current count or just increment
-                            // For simplicity:
-                            countEl.textContent = `4.8 (${book.reviews.length} Reviews)`;
+                            // Reset and close
+                            reviewForm.reset();
+                            updateStars(5);
+                            if (ratingInput) ratingInput.value = 5;
+                            modal.close();
                         }
 
-                        // Reset and close
-                        reviewForm.reset();
-                        updateStars(5);
-                        if (ratingInput) ratingInput.value = 5;
-                        modal.close();
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Review';
+                        }
                     });
                 }
             }
@@ -961,6 +1015,43 @@
         mobileLinks.forEach(link => {
             link.addEventListener('click', toggleMenu);
         });
+
+        // Newsletter Logic
+        const newsletterForm = document.getElementById('newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+                const email = emailInput ? emailInput.value : '';
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Subscribing...';
+                }
+
+                const { data, error } = await _supabase
+                    .from('subscribers')
+                    .insert([{ email }]);
+
+                if (error) {
+                    if (error.code === '23505') { // Unique constraint violation
+                        alert('You are already subscribed!');
+                    } else {
+                        alert('Error subscribing. Please try again.');
+                        console.error(error);
+                    }
+                } else {
+                    alert('Thank you for subscribing!');
+                    newsletterForm.reset();
+                }
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Subscribe';
+                }
+            });
+        }
     </script>
     <!-- Review Modal -->
     <dialog id="review-modal"

@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Eric Sambu | Author, Governance Expert & Strategic Leader</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
@@ -395,7 +396,7 @@
           </div>
         </div>
         <div class="md:col-span-8">
-          <form class="bg-white/5 p-8 md:p-12 rounded-xl border border-white/5">
+          <form id="newsletter-form" class="bg-white/5 p-8 md:p-12 rounded-xl border border-white/5">
             <h4 class="font-serif text-3xl mb-8">Stay Updated</h4>
             <div class="flex flex-col md:flex-row gap-4">
               <input
@@ -464,6 +465,48 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Supabase
+      const supabaseUrl = 'https://uilyvqyeabdukuboqout.supabase.co';
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVpbHl2cXllYWJkdWt1Ym9xb3V0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA5NTI1MTYsImV4cCI6MjA4NjUyODUxNn0.1nlUr57xSyb_nz0nzIwiHqL6ilmR_i24m4KgDJH0_EE';
+      const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+      // Newsletter Logic
+      const newsletterForm = document.getElementById('newsletter-form');
+      if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const emailInput = newsletterForm.querySelector('input[type="email"]');
+          const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+          const email = emailInput ? emailInput.value : '';
+
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Subscribing...';
+          }
+
+          const { data, error } = await _supabase
+            .from('subscribers')
+            .insert([{ email }]);
+
+          if (error) {
+            if (error.code === '23505') { // Unique constraint violation
+              alert('You are already subscribed!');
+            } else {
+              alert('Error subscribing. Please try again.');
+              console.error(error);
+            }
+          } else {
+            alert('Thank you for subscribing!');
+            newsletterForm.reset();
+          }
+
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Subscribe';
+          }
+        });
+      }
+
       const mobileBtn = document.getElementById('mobile-menu-btn');
       const closeBtn = document.getElementById('close-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
