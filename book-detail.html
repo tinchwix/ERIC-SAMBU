@@ -634,6 +634,21 @@
                 "quote": "Ethical decision-making is a profound opportunity for sustainable success.",
                 "reviews": []
             },
+            "The Art of Strategic Laziness": {
+                "subtitle": "Achieve More by Doing Less",
+                "description": "Distinguishing busyness from true effectiveness \u2014 empowering readers to achieve more by doing less and living intentionally.",
+                "synopsis": "\"The Art of Strategic Laziness\" begins by distinguishing busyness from true effectiveness, introducing readers to self-awareness as a foundation for productivity. It guides them through identifying core values and strengths and shifting toward a growth mindset that fosters resilience. Next, the book helps readers craft a compelling vision and personal mission, laying a strategic framework to prioritize tasks using techniques like the Eisenhower Matrix and the 80/20 rule. Readers learn to break down grand visions into achievable, measurable goals using SMART criteria and OKRs.<br><br>In the action phase, the book covers habit engineering, showing how to build and maintain routines while overcoming procrastination with psychological strategies and energy management aligned with natural rhythms. It introduces focus tools such as digital blockers, Pomodoro timers, and white noise generators, alongside practical tips like single-tasking and deep work blocks.<br><br>The narrative then shifts to interpersonal effectiveness, teaching deep listening, empathy, and the art of saying no to set boundaries. It discusses collaboration principles essential for shared success. The final section highlights sustainable peak performance through the Renewal Principle, emphasizing balance with rest, nutrition, and mental health. It reinforces continuous learning via personalized curricula and integrating all principles into a cohesive, lifelong effective lifestyle.<br><br>Throughout, the book weaves in productivity tools like the 1-3-5 rule, task batching, time blocking, Kanban boards, and meeting best practices. Eastern philosophies such as Ikigai, Kaizen, and Shoshin are introduced as cultural lenses on continuous improvement and purpose. By culminating in a holistic approach that blends mindset, strategy, action, relationships, and sustainability, the book empowers readers to achieve more by doing less and living intentionally.",
+                "url": "#",
+                "price": "11.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770965603/macha-school/macha-school/author-portfolio/Images/The%20Art%20of%20Strategic%20Laziness.jpg",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Achieve more by doing less and living intentionally.",
+                "reviews": []
+            },
             "Regulating Private Security Industry": {
                 "subtitle": "Asian Journal of Social Science and Management",
                 "description": "Comparative analysis of regulatory regimes for private security in South Africa, Kenya and Tanzania.",
@@ -910,12 +925,17 @@
                         const { data, error } = await _supabase
                             .from('reviews')
                             .insert([
-                                { book_title: title, name, rating, text }
+                                {
+                                    book_title: title,
+                                    user_name: name,
+                                    rating: parseInt(rating),
+                                    review_text: text
+                                }
                             ]);
 
                         if (error) {
-                            alert('Error submitting review. Please try again.');
-                            console.error(error);
+                            alert(`Error submitting review: ${error.message || 'Please try again.'}`);
+                            console.error('Supabase error:', error);
                         } else {
                             // Re-fetch and re-render
                             const updatedReviews = await fetchReviews();
@@ -967,11 +987,11 @@
                                 <span class="material-icons text-primary text-sm">person</span>
                             </div>
                             <div>
-                                <p class="text-sm font-bold truncate">${review.name}</p>
+                                <p class="text-sm font-bold truncate">${review.user_name}</p>
                                 <div class="flex text-amber-400 text-xs">${starsHtml}</div>
                             </div>
                         </div>
-                        <p class="text-sm text-slate-300 italic flex-grow">"${review.text}"</p>
+                        <p class="text-sm text-slate-300 italic flex-grow">"${review.review_text}"</p>
                     </div>
                 `;
                 container.insertAdjacentHTML('beforeend', html);
