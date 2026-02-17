@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Eric Sambu | Author, Governance Expert & Strategic Leader</title>
+  <link rel="icon" type="image/png"
+    href="https://res.cloudinary.com/dn4dszfra/image/upload/v1771174376/macha-school/macha-school/author-portfolio/Images/favicon.png" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/galleryData.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+
+  <!-- Tailwind Configuration -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#3211d4",
+            "background-light": "#f6f6f8",
+            "background-dark": "#1a162e",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "serif": ["Playfair Display", "serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body
+  class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary selection:text-white">
+  <nav class="fixed top-0 w-full z-50 glass-effect border-b border-primary/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="font-serif text-2xl font-bold tracking-tighter">ERIC SAMBU</span>
+      </div>
+      <div class="hidden md:flex items-center space-x-10 text-sm font-medium tracking-widest uppercase">
+        <a class="hover:text-primary transition-colors" href="#">Home</a>
+        <a class="hover:text-primary transition-colors" href="#about">About</a>
+        <a class="hover:text-primary transition-colors" href="#books">Publications</a>
+        <a class="hover:text-primary transition-colors" href="#credentials">Credentials</a>
+        <a class="hover:text-primary transition-colors" href="#expertise">Expertise</a>
+      </div>
+      <div class="hidden md:flex items-center">
+        <a href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"
+          class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase transition-all">Connect</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden text-slate-900 dark:text-white p-2">
+        <span class="material-icons">menu</span>
+      </button>
+    </div>
+  </nav>
+  <section class="relative min-h-screen flex items-center overflow-hidden pt-20 pb-20 md:pt-0">
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/80 to-background-dark z-10">
+      </div>
+      <img alt="Professional cityscape" class="w-full h-full object-cover grayscale opacity-30 scale-105"
+        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893454/macha-school/author-portfolio/Images/ericpics/Eric%20Pic%201.jpg" />
+    </div>
+    <div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+    <div class="absolute bottom-1/4 -left-20 w-72 h-72 bg-primary/10 blur-[100px] rounded-full"></div>
+
+    <div class="relative z-20 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div class="text-center md:text-left order-2 md:order-1">
+        <div class="mb-6 flex justify-center md:justify-start">
+          <span
+            class="inline-block px-4 py-1 border border-primary/30 rounded-full text-[10px] tracking-[0.3em] uppercase text-primary font-bold bg-primary/5">Author
+            &bull; Governance Expert &bull; Leader</span>
+        </div>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl mb-6 leading-snug tracking-tight text-gradient pb-4">The
+          Balanced <br /> <span class="italic font-normal">Edge</span></h1>
+        <p class="text-lg text-slate-300 max-w-lg mx-auto md:mx-0 mb-8 font-light leading-relaxed">Over 24 years of
+          strategic leadership, governance expertise, and thought leadership across East Africa &mdash; distilled into
+          transformative publications.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+          <a class="group relative px-8 py-4 bg-primary rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_0_40px_rgba(50,17,212,0.6)] hover:scale-105 hover:-translate-y-1 w-full sm:w-auto"
+            href="book-detail.html?title=Balanced%20Edge">
+            <span class="relative z-10 text-white font-bold tracking-widest uppercase text-xs">Get This Book</span>
+          </a>
+          <a href="#about"
+            class="px-8 py-4 border border-white/10 hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-xs font-bold tracking-widest uppercase w-full sm:w-auto">Read
+            Biography</a>
+          <a href="collection.html"
+            class="px-8 py-4 border border-white/10 hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-300 hover:scale-105 hover:-translate-y-1 text-xs font-bold tracking-widest uppercase w-full sm:w-auto">More
+            Books</a>
+        </div>
+      </div>
+
+      <div class="order-1 md:order-2 flex justify-center perspective-1000">
+        <div class="relative group">
+          <div
+            class="absolute -inset-4 bg-primary/40 blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-700 rounded-full">
+          </div>
+          <img
+            src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770919041/macha-school/macha-school/author-portfolio/Images/balanced_edge_landing_v2.png"
+            class="relative w-64 md:w-80 lg:w-96 rounded-lg shadow-2xl shadow-black/50 transform rotate-6 group-hover:rotate-0 group-hover:scale-105 transition-all duration-700 ease-out"
+            alt="The Balanced Edge Book Cover">
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:hidden">
+      <span class="text-[10px] tracking-widest uppercase text-slate-500">Scroll</span>
+      <span class="material-icons text-slate-500 animate-bounce">keyboard_arrow_down</span>
+    </div>
+  </section>
+  <section id="about" class="py-12 border-y border-white/5 bg-background-dark/50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-serif mb-1">24+</div>
+          <div class="text-[10px] tracking-widest uppercase text-slate-500">Books Authored</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-serif mb-1">9+</div>
+          <div class="text-[10px] tracking-widest uppercase text-slate-500">Research Papers</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-serif mb-1">20+</div>
+          <div class="text-[10px] tracking-widest uppercase text-slate-500">Professional Certifications</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-serif mb-1">24+</div>
+          <div class="text-[10px] tracking-widest uppercase text-slate-500">Years Leadership</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-32 relative" id="about">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-16 items-center">
+        <div class="lg:col-span-5 relative">
+          <div class="aspect-[4/5] overflow-hidden rounded-xl">
+            <img alt="Eric Sambu portrait"
+              class="w-full h-full object-cover object-left grayscale brightness-75 hover:grayscale-0 transition-all duration-700"
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893455/macha-school/author-portfolio/Images/ericpics/Eric%20Pic%202.jpg" />
+          </div>
+          <div class="absolute -bottom-10 -right-10 w-48 h-48 border border-primary/20 -z-10 rounded-xl"></div>
+        </div>
+        <div class="lg:col-span-7">
+          <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-primary mb-6">The Journey</h2>
+          <h3 class="font-serif text-4xl md:text-6xl mb-8 leading-tight">Governance, leadership <span class="italic">&
+              excellence.</span> <a href="about-eric-sambu.html"
+              class="inline-flex items-center text-base font-bold text-[#f59f0a] tracking-widest uppercase hover:text-white transition-colors ml-2">Read
+              More <i class="material-icons text-base ml-1 animate-wave">arrow_forward</i></a>
+
+          </h3>
+          <div class="space-y-6 text-slate-300 font-light text-lg leading-relaxed">
+            <p>Eric Sambu is a distinguished leader with over 24 years of experience, currently serving as the Managing
+              Director of SGA Security Tanzania. His academic journey is marked by a PhD in Management (specializing in
+              governance) and a Doctor of Business Administration (specializing in AI) from the University of Dar es
+              Salaam, alongside multiple Master's degrees in Business Administration, Revenue Law, and Governance.</p>
+            <p>Recognized for his exceptional leadership, Eric has been named CEO of the Year for five consecutive years
+              (2021-2025) and received the Outstanding CEO Award from the CEO Round Table of Tanzania in 2024. He is a
+              Fellow of ICPAK and a prominent facilitator in international workshops specializing in corporate
+              governance, risk management, and cybersecurity.</p>
+            <div class="mt-6 p-6 bg-primary/5 rounded-xl border border-primary/10">
+              <h4 class="text-white font-bold mb-2 text-sm uppercase tracking-wider">Industry Impact & SGA Security</h4>
+              <p class="text-sm">Under Eric's stewardship, SGA Security has become East Africa's most trusted security
+                provider, employing over 5,000 people and earning multiple ISO certifications (9001, 14001, 45001,
+                18788). The company has been recognized as the Best Employer and the Most Compliant Large Taxpayer by
+                TRA.</p>
+            </div>
+          </div>
+          <div id="expertise" class="mt-12 pt-12 border-t border-white/5">
+            <h4 class="text-xs font-bold tracking-[0.3em] uppercase text-slate-500 mb-4">Key Qualifications</h4>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">PhD
+                (Governance)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">DBA (AI)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">CPA (Fellow)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">CPS-K</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">MBA</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">LLB</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">CPP (ASIS)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">CGI (UK)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">KIM</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">IHRM</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">NBAA (TZ)</span>
+              <span class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-medium">ISO Lead
+                Auditor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-24 bg-background-light dark:bg-[#151225]" id="recognition">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-xs font-bold tracking-[0.4em] uppercase text-primary mb-4">Milestones</h2>
+        <h3 class="font-serif text-4xl md:text-5xl">Honors & <span class="italic text-primary">Recognition</span></h3>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative group">
+          <div class="aspect-video overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893453/macha-school/author-portfolio/Images/ericmorepics/Eric%20Sambu%20receiving%20award%20from%20PM.jpg"
+              alt="Eric Sambu receiving an award"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="mt-6">
+            <h4 class="font-serif text-2xl mb-2">Excellence in Leadership</h4>
+            <p class="text-slate-400 font-light italic">Recognized for outstanding contribution to strategic governance
+              and industry growth across East Africa.</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-8">
+          <div
+            class="flex items-start gap-6 p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/20 transition-all">
+            <div class="w-16 h-16 flex-shrink-0 rounded-xl overflow-hidden">
+              <img
+                src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893451/macha-school/author-portfolio/Images/ericmorepics/Eric%20Sambu%20Pic%20Trophy.jpg"
+                alt="Leadership Trophy" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <h5 class="font-bold text-white mb-1 uppercase tracking-wider text-xs">Industry Accolades</h5>
+              <p class="text-sm text-slate-400 font-light">A testament to over two decades of dedicated service and
+                pursuit of professional excellence.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-6 p-6 bg-black/20 rounded-2xl border border-white/5 italic">
+            <p class="text-slate-300">"True recognition is not just in the awards received, but in the impact made on
+              the lives of others through principled leadership."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-32 bg-background-dark/80 relative overflow-hidden" id="credentials">
+    <div
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 blur-[150px] rounded-full -z-10">
+    </div>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-primary mb-6">Global Credentials</h2>
+          <h3 class="font-serif text-5xl md:text-6xl mb-6">Professional <span class="italic">Excellence</span></h3>
+          <p class="text-slate-300 font-light">A testament to a lifetime of strategic leadership, specialized expertise,
+            and commitment to global industry standards.</p>
+        </div>
+      </div>
+      <div id="credentials-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </section>
+
+  <section class="relative h-[60vh] overflow-hidden flex items-center justify-center">
+    <div class="absolute inset-0 z-0 parallax-bg"
+      style="background-image: url('https://res.cloudinary.com/dn4dszfra/image/upload/v1770893456/macha-school/author-portfolio/Images/ericpics/Eric%20Pic%203.jpg');">
+      <div class="absolute inset-0 bg-background-dark/80"></div>
+    </div>
+    <div class="relative z-10 text-center px-6">
+      <blockquote class="font-serif text-3xl md:text-5xl max-w-3xl mx-auto italic leading-tight">"The most profound
+        leadership is found in the discipline to balance excellence with purpose."</blockquote>
+    </div>
+  </section>
+  <section class="py-32 bg-background-dark" id="books">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-xl">
+          <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-primary mb-6">Publications</h2>
+          <h3 class="font-serif text-5xl md:text-6xl mb-6">The Library</h3>
+          <p class="text-slate-300 font-light">24 books and 9 academic papers spanning corporate governance, ESG,
+            security, leadership, and professional development.</p>
+        </div>
+        <a class="px-8 py-4 bg-primary/10 border border-primary text-primary rounded-lg font-bold tracking-widest uppercase text-sm hover:bg-primary hover:text-white hover:scale-105 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(50,17,212,0.5)] transition-all duration-300"
+          href="collection.html">View All 32+ Works</a>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <a href="book-detail.html?title=The%20Board%20of%20Directors"
+          class="group cursor-pointer block transition-all duration-300 hover:-translate-y-2">
+          <div class="aspect-[2/3] overflow-hidden rounded-xl mb-4 bg-slate-800">
+            <img alt="The Board of Directors"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770910403/macha-school/author-portfolio/Images/board%20of%20directors%203-d%20cover%203.png" />
+          </div>
+          <h4 class="font-serif text-xl mb-1">The Board of Directors</h4>
+          <p class="text-slate-500 text-xs">Governance &bull; USD 16.80</p>
+        </a>
+        <a href="book-detail.html?title=Balanced%20Edge"
+          class="group cursor-pointer block transition-all duration-300 hover:-translate-y-2">
+          <div class="aspect-[2/3] overflow-hidden rounded-xl mb-4 bg-slate-800">
+            <img alt="Balanced Edge"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770917361/macha-school/macha-school/author-portfolio/Images/balanced_edge_v2.png" />
+          </div>
+          <h4 class="font-serif text-xl mb-1">Balanced Edge</h4>
+          <p class="text-slate-500 text-xs">Leadership &bull; USD 10.00</p>
+        </a>
+        <a href="book-detail.html?title=Principled%20Leadership"
+          class="group cursor-pointer block transition-all duration-300 hover:-translate-y-2">
+          <div class="aspect-[2/3] overflow-hidden rounded-xl mb-4 bg-slate-800">
+            <img alt="Principled Leadership"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770913238/macha-school/author-portfolio/Images/principled_leadership_v2.png" />
+          </div>
+          <h4 class="font-serif text-xl mb-1">Principled Leadership</h4>
+          <p class="text-slate-500 text-xs">Leadership &bull; USD 10.34</p>
+        </a>
+        <a href="book-detail.html?title=From%20Where%20I%20Stand"
+          class="group cursor-pointer block transition-all duration-300 hover:-translate-y-2">
+          <div class="aspect-[2/3] overflow-hidden rounded-xl mb-4 bg-slate-800">
+            <img alt="From Where I Stand"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770957001/macha-school/macha-school/author-portfolio/Images/from_where_i_stand_v2.png" />
+
+          </div>
+          <h4 class="font-serif text-xl mb-1">From Where I Stand</h4>
+          <p class="text-slate-500 text-xs">Leadership &bull; USD 6.00</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Carousel Section -->
+  <section class="py-32 bg-background-light dark:bg-[#151225]" id="gallery-preview">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div class="max-w-xl text-left">
+          <h2 class="text-sm font-bold tracking-[0.4em] uppercase text-primary mb-6">Moments</h2>
+          <h3 class="font-serif text-5xl md:text-6xl mb-6">In <span class="italic">Action</span></h3>
+          <p class="text-slate-400 font-light">A glimpse into the professional journey, leadership milestones, and
+            corporate impact across East Africa.</p>
+        </div>
+        <a class="px-8 py-4 border border-primary text-primary rounded-lg font-bold tracking-widest uppercase text-xs hover:bg-primary hover:text-white transition-all duration-300 transform hover:-translate-y-1"
+          href="about-eric-sambu.html#gallery">Explore Full Gallery</a>
+      </div>
+
+      <!-- Bento Grid Container -->
+      <div id="bento-grid" class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 auto-rows-[200px] gap-4">
+        <!-- Dynamically populated with varying sizes -->
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-background-dark py-20 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-16 mb-20">
+        <div class="md:col-span-4 flex flex-col items-center md:items-start">
+          <div class="w-32 h-32 rounded-2xl overflow-hidden mb-6 border-2 border-primary/20 p-1">
+            <img
+              src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893440/macha-school/author-portfolio/Images/ericmorepics/Eric%20Sambu%20half%20photo.jpg"
+              alt="Eric Sambu"
+              class="w-full h-full object-cover rounded-xl filter grayscale group-hover:grayscale-0 transition-all duration-500">
+          </div>
+          <div class="font-serif text-3xl font-bold tracking-tighter mb-6 text-primary">ERIC SAMBU</div>
+          <p class="text-slate-300 font-light leading-relaxed mb-8 text-center md:text-left">Author, governance
+            professional, and strategic
+            leader. Sharing insights on corporate governance, risk management, leadership, and professional excellence
+            across East Africa.</p>
+          <div class="flex items-center space-x-4">
+            <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+              href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"><i
+                class="material-icons text-sm">public</i></a>
+            <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+              href="https://www.webofscience.com/wos/author/record/ODL-6728-2025" target="_blank"
+              title="Web of Science"><i class="material-icons text-sm">science</i></a>
+            <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+              href="#"><i class="material-icons text-sm">email</i></a>
+            <a class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary transition-colors"
+              href="#"><i class="material-icons text-sm">share</i></a>
+          </div>
+        </div>
+        <div class="md:col-span-8">
+          <form id="newsletter-form" class="bg-white/5 p-8 md:p-12 rounded-xl border border-white/5">
+            <h4 class="font-serif text-3xl mb-8">Stay Updated</h4>
+            <div class="flex flex-col md:flex-row gap-4">
+              <input
+                class="flex-grow bg-background-dark border-white/10 rounded-lg px-6 py-4 focus:ring-primary focus:border-primary"
+                placeholder="Your email address" type="email" />
+              <button
+                class="bg-primary px-10 py-4 rounded-lg font-bold tracking-widest uppercase hover:bg-primary/90 transition-all"
+                type="submit">Subscribe</button>
+            </div>
+            <p class="mt-4 text-[10px] text-slate-500 tracking-widest uppercase">Get notified about new publications and
+              insights.</p>
+          </form>
+        </div>
+      </div>
+      <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <p class="text-xs text-slate-500 uppercase tracking-widest">&copy; 2025 Eric Sambu. All Rights Reserved.</p>
+        <div class="flex space-x-8 text-xs text-slate-500 uppercase tracking-widest">
+          <a class="hover:text-primary" href="#">Privacy Policy</a>
+          <a class="hover:text-primary" href="#">Terms of Service</a>
+          <a class="hover:text-primary" href="https://www.linkedin.com/in/eric-sambu-78750b3a/"
+            target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu"
+    class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8">
+    <button id="close-menu-btn"
+      class="absolute top-6 right-6 p-2 text-slate-900 dark:text-white cursor-pointer hover:rotate-90 transition-transform duration-300">
+      <span class="material-icons text-3xl">close</span>
+    </button>
+    <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="#">Home</a>
+    <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="#about">About</a>
+    <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="#books">Publications</a>
+    <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="#credentials">Credentials</a>
+    <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="#expertise">Expertise</a>
+    <a href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"
+      class="px-8 py-3 bg-primary text-white rounded-full font-bold uppercase tracking-widest hover:bg-primary/90 transition-all">Connect</a>
+  </div>
+
+  <!-- PDF Viewer Modal -->
+  <div id="pdf-modal"
+    class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 md:p-8 bg-background-dark/95 backdrop-blur-xl">
+    <div
+      class="relative w-full max-w-5xl h-full flex flex-col bg-slate-900 rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+      <div class="flex items-center justify-between p-4 border-b border-white/5 bg-slate-800/50">
+        <div class="flex items-center gap-3">
+          <span class="material-icons text-primary">verified</span>
+          <h4 id="modal-title" class="font-serif text-lg text-white">Credential Viewer</h4>
+        </div>
+        <button id="close-modal" class="p-2 hover:bg-white/10 rounded-full transition-all">
+          <span class="material-icons text-white">close</span>
+        </button>
+      </div>
+      <div class="flex-grow relative bg-slate-100 overflow-y-auto flex items-start justify-center p-4">
+        <img id="pdf-image" class="max-w-full h-auto shadow-2xl transition-opacity duration-500" src=""
+          alt="Credential Image">
+      </div>
+      <div class="p-4 bg-slate-800 text-center">
+        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Secure View-Only Mode &bull; Content
+          Protected</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript Modules -->
+  <script src="assets/js/navigation.js"></script>
+  <script src="assets/js/newsletter.js"></script>
+  <script src="assets/js/credentials.js"></script>
+  <script src="assets/js/gallery.js"></script>
+</body>
+
+</html>

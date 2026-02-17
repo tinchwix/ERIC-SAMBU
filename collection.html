@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Publications & Works | Eric Sambu</title>
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dn4dszfra/image/upload/v1771174376/macha-school/macha-school/author-portfolio/Images/favicon.png" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#3211d4", "background-light": "#f6f6f8", "background-dark": "#1a162e" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <header
+        class="border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center"><span
+                        class="material-icons text-white">menu_book</span></div>
+                <a href="index.html" class="text-xl font-bold tracking-tight">ERIC <span
+                        class="text-primary">SAMBU</span></a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="text-primary" href="#">Publications</a>
+                <a class="hover:text-primary transition-colors" href="index.html#credentials">Credentials</a>
+                <a class="hover:text-primary transition-colors" href="index.html#about">About</a>
+                <a class="px-5 py-2 bg-primary text-white rounded-full hover:bg-opacity-90 transition-all"
+                    href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank">Connect</a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden text-slate-900 dark:text-white p-2">
+                <span class="material-icons">menu</span>
+            </button>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex flex-col md:flex-row items-center gap-12 mb-16">
+            <div
+                class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden shadow-2xl border-4 border-primary/20 p-1">
+                <img src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770893446/macha-school/author-portfolio/Images/ericmorepics/Eric%20Sambu%20half%20picture.jpg"
+                    alt="Eric Sambu"
+                    class="w-full h-full object-cover rounded-xl grayscale hover:grayscale-0 transition-all duration-700">
+            </div>
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Publications <span
+                        class="text-primary italic">& Works</span></h1>
+                <p class="text-slate-500 dark:text-slate-300 max-w-2xl text-lg font-light leading-relaxed">A
+                    comprehensive collection of 24 books and 9 research publications
+                    distilling over two decades of expertise in corporate governance, leadership, ESG, and security
+                    regulation.</p>
+            </div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center justify-between mb-12 space-y-4 md:space-y-0">
+            <div class="flex flex-wrap justify-center gap-3" id="filter-buttons">
+                <button data-filter="all"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary text-white font-medium shadow-lg shadow-primary/20 transition-all">All
+                    Works</button>
+                <button data-filter="Books"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Books</button>
+                <button data-filter="Governance"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Governance</button>
+                <button data-filter="Leadership"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Leadership</button>
+                <button data-filter="Security"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Security</button>
+                <button data-filter="ESG"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">ESG</button>
+                <button data-filter="Academic"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Academic</button>
+                <button data-filter="Finance"
+                    class="filter-btn px-6 py-2 rounded-full bg-primary/10 hover:bg-primary/20 text-slate-600 dark:text-slate-300 transition-all font-medium">Finance</button>
+            </div>
+            <div class="relative w-full md:w-72">
+                <span
+                    class="material-icons absolute left-3 top-1/2 -translate-y-1/2 text-slate-300 text-sm">search</span>
+                <input id="search-input"
+                    class="w-full pl-10 pr-4 py-2 bg-primary/5 border border-primary/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-slate-800/50"
+                    placeholder="Search by title..." type="text" />
+            </div>
+        </div>
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3"><span
+                class="material-icons text-primary">auto_stories</span> Books <span
+                class="text-sm font-normal text-slate-500">(24 titles)</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770910403/macha-school/author-portfolio/Images/board%20of%20directors%203-d%20cover%203.png"
+                        alt="The Board of Directors" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">The Board of Directors</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">More than a mere committee of individuals; the
+                        heartbeat of corporate governance. A comprehensive exploration of oversight, strategy, and
+                        ethical stewardship.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            16.80</span><span class="text-xs opacity-70">eBook &bull; Oct 2025</span></div>
+                    <a href="book-detail.html?title=The%20Board%20of%20Directors"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911267/macha-school/author-portfolio/Images/ESG%20and%20Sustainability%20Reporting%20Book%203-D%20Cover.jpg"
+                        alt="ESG and Sustainability Reporting" />
+                </div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">ESG</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">ESG and Sustainability Reporting</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">A comprehensive guide on ESG and sustainability
+                        reporting — demystifying frameworks, standards, and empowering credible ESG disclosures.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            9.90</span><span class="text-xs opacity-70">eBook &bull; Nov 2025</span></div>
+                    <a href="book-detail.html?title=ESG%20and%20Sustainability%20Reporting"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911062/macha-school/author-portfolio/Images/Corporate%20Moral%20Responsibility.png"
+                        alt="Corporate Moral Responsibility" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Corporate Moral Responsibility</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Where profits are balanced with purpose — assessing
+                        challenges and actionable steps to align ethical practices with corporate behavior and
+                        sustainability.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            12.00</span><span class="text-xs opacity-70">eBook &bull; Sep 2025</span></div>
+                    <a href="book-detail.html?title=Corporate%20Moral%20Responsibility"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770917361/macha-school/macha-school/author-portfolio/Images/balanced_edge_v2.png"
+                        alt="Balanced Edge" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Balanced Edge</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Empowering professionals to master wellbeing —
+                        reclaim vitality, reduce burnout, and sustainably enhance personal and professional fulfilment.
+                    </p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            10.00</span><span class="text-xs opacity-70">eBook &bull; Dec 2025</span></div>
+                    <a href="book-detail.html?title=Balanced%20Edge"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770957001/macha-school/macha-school/author-portfolio/Images/from_where_i_stand_v2.png"
+                        alt="From Where I Stand" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">From Where I Stand</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Personal experiences from a leader at the top of the
+                        corporate world for nearly two decades — a living library of real-world corporate wisdom.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            6.00</span><span class="text-xs opacity-70">eBook &bull; Sep 2025</span></div>
+                    <a href="book-detail.html?title=From%20Where%20I%20Stand"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911268/macha-school/author-portfolio/Images/Environmental%2C%20Social%2C%20and%20Governance.jpg"
+                        alt="Environmental, Social, and Governance (ESG)" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">ESG</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Environmental, Social, and Governance (ESG)</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">A journey through ESG principles, practices and
+                        implications — with success stories from East Africa and actionable steps for sustainability.
+                    </p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            12.00</span><span class="text-xs opacity-70">eBook &bull; Sep 2025</span></div>
+                    <a href="book-detail.html?title=Environmental%2C%20Social%2C%20and%20Governance%20%28ESG%29"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911484/macha-school/author-portfolio/Images/Investigation%203-D%20Cover%202.png"
+                        alt="Insight Into Incident Investigation" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Security</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Insight Into Incident Investigation</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Illuminating the world of incident investigation —
+                        crime scenes, cyber breaches, and near-misses with methodical, ethical rigor.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            10.00</span><span class="text-xs opacity-70">eBook &bull; Dec 2025</span></div>
+                    <a href="book-detail.html?title=Insight%20Into%20Incident%20Investigation"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770913238/macha-school/author-portfolio/Images/principled_leadership_v2.png"
+                        alt="Principled Leadership" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Principled Leadership</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">A compass and beacon for leaders navigating
+                        tumultuous waters — illuminating pathways to ethical decision-making and responsible governance.
+                    </p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            10.34</span><span class="text-xs opacity-70">eBook &bull; Nov 2025</span></div>
+                    <a href="book-detail.html?title=Principled%20Leadership"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770958932/macha-school/macha-school/author-portfolio/Images/transfer_pricing_v2.png"
+                        alt="Transfer Pricing" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Transfer Pricing</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Your guide to understanding intricate transfer
+                        pricing rules — from the arm's length principle to the East African landscape.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            11.99</span><span class="text-xs opacity-70">eBook &bull; Oct 2025</span></div>
+                    <a href="book-detail.html?title=Transfer%20Pricing"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911061/macha-school/author-portfolio/Images/Contemporary%20Leadership%203-D%20Book%20Cover%202.png"
+                        alt="Contemporary Leadership" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Contemporary Leadership</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Ubuntu, harambee, fireside stories, the role of
+                        elders — timeless African customs offering powerful lessons for today's leadership.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            11.11</span><span class="text-xs opacity-70">eBook &bull; Sep 2025</span></div>
+                    <a href="book-detail.html?title=Contemporary%20Leadership"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770914000/macha-school/author-portfolio/Images/personal_data_protection_v2.png"
+                        alt="Personal Data Protection" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Personal Data Protection</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">A new frontier of managing data risks —
+                        understanding principles, governance and compliance with evolving data protection laws in East
+                        Africa.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            10.00</span><span class="text-xs opacity-70">eBook &bull; 2025</span></div>
+                    <a href="book-detail.html?title=Personal%20Data%20Protection"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <!-- Missing Books Added from PDF -->
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911409/macha-school/author-portfolio/Images/GRC%203-D%20Cover.jpg"
+                        alt="Governance, Risk and Compliance (GRC)" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Governance, Risk and Compliance (GRC)</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Mastering the principles and practices of GRC to
+                        ensure organizational resilience and ethical excellence.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            14.50</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Governance%2C%20Risk%20and%20Compliance%20%28GRC%29"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770909956/macha-school/author-portfolio/Images/Leading%20into%20the%20future%203-D%20Cover.png"
+                        alt="Leading into the Future" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership / AI</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Leading into the Future</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Navigating leadership in the AI Era. A guide to
+                        staying relevant and effective in a changing world.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            15.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Leading%20into%20the%20Future"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911850/macha-school/author-portfolio/Images/Marriage%20Dance%203-D%203.png"
+                        alt="The Marriage Dance" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Personal Growth</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">The Marriage Dance</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Submit to your Husbands, Love your Wives. A guide to
+                        building strong, principled relationships.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            12.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=The%20Marriage%20Dance"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770910590/macha-school/author-portfolio/Images/Closing%20the%20Deal%203-D%20cover.png"
+                        alt="Closing the Deal" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Closing the Deal</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">The art of negotiation. Strategies for mastering
+                        influence and reaching successful outcomes.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            13.50</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Closing%20the%20Deal"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911689/macha-school/author-portfolio/Images/Management%20of%20Change.png"
+                        alt="Management of Change" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Management of Change</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Principles and Practices for leading organizations
+                        through transition and transformation.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            14.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Management%20of%20Change"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770912060/macha-school/author-portfolio/Images/Mastering%20Biz%20Finance%20cover%203-D%204.jpg"
+                        alt="Mastering Business Finance" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Finance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Mastering Business Finance</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">A practical guide to financial management, from
+                        budgeting to investment strategy.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            16.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Mastering%20Business%20Finance"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770912581/macha-school/author-portfolio/Images/own_your_hours_3d.png"
+                        alt="Own Your Hours" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Own Your Hours</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">The CEO's Guide to Managing Your One-Person Empire.
+                        Master your time and productivity.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            12.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Own%20Your%20Hours"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770965603/macha-school/macha-school/author-portfolio/Images/The%20Art%20of%20Strategic%20Laziness.jpg"
+                        alt="The Art of Strategic Laziness" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Leadership</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">The Art of Strategic Laziness</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Distinguishing busyness from true effectiveness —
+                        empowering readers to achieve more by doing less and living intentionally.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            11.00</span><span class="text-xs opacity-70">eBook &bull; 2025</span></div>
+                    <a href="book-detail.html?title=The%20Art%20of%20Strategic%20Laziness"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770909952/macha-school/author-portfolio/Images/From%20Leads%20to%20Profits.png"
+                        alt="From Leads to Profits" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Marketing</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">From Leads to Profits</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">How to systematically attract, nurture, convert and
+                        retain customers in the Digital Age.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            14.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=From%20Leads%20to%20Profits"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770909948/macha-school/author-portfolio/Images/Forensic%20book%20cover%203-D.png"
+                        alt="Forensic Accounting" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Finance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Forensic Accounting</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Unmasking Deception in the Digital Age. A
+                        comprehensive guide to fraud examination.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            18.00</span><span class="text-xs opacity-70">eBook</span></div>
+                    <a href="book-detail.html?title=Forensic%20Accounting"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3]"><img class="w-full h-full object-cover transition-transform duration-500"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1771172987/macha-school/macha-school/author-portfolio/Images/Root_Cause_Analysis.png"
+                        alt="Root Cause Analysis" /></div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Governance</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Root Cause Analysis</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">Solving Problems Before They Recur. A methodical
+                        approach to organizational excellence.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            13.00</span><span class="text-xs opacity-70">eBook &bull; 2025</span></div>
+                    <a href="book-detail.html?title=Root%20Cause%20Analysis"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+            <div
+                class="book-card group relative overflow-hidden rounded-xl bg-slate-200 dark:bg-slate-800 shadow-xl transition-all hover:-translate-y-2 hover:shadow-2xl">
+                <div class="aspect-[2/3] overflow-hidden bg-slate-800">
+                    <img alt="Securing the Perimeter"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        src="https://res.cloudinary.com/dn4dszfra/image/upload/v1771176315/macha-school/author-portfolio/Images/macha-school/author-portfolio/Images/securing_the_perimeter.png" />
+                </div>
+                <div
+                    class="overlay absolute inset-0 bg-primary/95 opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+                    <span class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">Security</span>
+                    <h3 class="text-lg font-bold mb-2 leading-tight">Securing the Perimeter</h3>
+                    <p class="text-xs opacity-90 mb-4 line-clamp-3">The Complete Guide to Physical Access Control. An
+                        exhaustive guide that unpacks every facet of physical security.</p>
+                    <div class="flex justify-between items-center mb-4"><span class="text-lg font-bold">USD
+                            15.00</span><span class="text-xs opacity-70">eBook &bull; 2026</span></div>
+                    <a href="book-detail.html?title=Securing%20the%20Perimeter"
+                        class="w-full py-2 bg-white text-primary rounded font-bold hover:bg-opacity-90 transition-colors text-center block">View
+                        Details</a>
+                </div>
+            </div>
+        </div>
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3"><span
+                class="material-icons text-primary">science</span> Academic Publications <span
+                class="text-sm font-normal text-slate-500">(9 papers)</span></h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">business_center</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Enhancing Organisational Excellence</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">ICS 29th Annual International Conference, 2025</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Exploring procurement and recruitment as drivers of
+                        organizational success and excellence.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958140/macha-school/macha-school/author-portfolio/Docs/enhancing_organisational_excellence.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">trending_up</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">The Cheese Has Moved</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">The Accountant, 2025</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">How accountants should respond to evolving financial
+                        landscapes and international aid changes.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958143/macha-school/macha-school/author-portfolio/Docs/the_cheese_has_moved.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-blue-700 to-blue-900 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">waves</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Maritime Security Challenges</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">Dar Es Salaam Maritime Institute, 2024</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Assessing the role of private security companies in
+                        the emerging Blue Economy.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958142/macha-school/macha-school/author-portfolio/Docs/maritime_security_challenges.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">account_balance</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Tanzania Security Regulation</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">IJBS, 2024</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">The effect of minimum wage orders on the private
+                        security industry in Tanzania.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958506/macha-school/macha-school/author-portfolio/Docs/tanzania_security_regulation.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">psychology</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Workplace Stress Management</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">IJISRT, 2024</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Causes and countermeasures for workplace stress
+                        during and after the Covid-19 pandemic.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958146/macha-school/macha-school/author-portfolio/Docs/workplace_stress_management.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-cyan-500 to-cyan-700 flex items-center justify-center text-center p-6">
+                    <span class="material-icons text-white mb-2" style="font-size: 48px;">home_work</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">When The Office Went Home</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">Research Publish, 2024</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Responding to emerging risks and opportunities in the
+                        remote and hybrid work era.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770958144/macha-school/macha-school/author-portfolio/Docs/when_the_office_went_home.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div class="aspect-[3/2] bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
+                    <span class="material-icons text-white" style="font-size: 64px;">security</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Regulating Private Security Industry</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">Asian Journal of Social Science and Management
+                        Technology, 2023</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Comparative analysis of regulatory regimes for
+                        private security in South Africa, Kenya and Tanzania.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893491/macha-school/author-portfolio/Docs/Regulating%20the%20private%20security%20industry%20in%20Tanzania.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center">
+                    <span class="material-icons text-white" style="font-size: 64px;">how_to_vote</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">Democratisation in Africa</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">Africa Journal of Democracy and Election Research,
+                        2023</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Lessons from the 2022 Kenyan Presidential Election —
+                        best practices for African democratisation.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893459/macha-school/author-portfolio/Docs/DemocratisationinAfrica-Lessonsfromthe2022KenyanPresidentialElectionbyEricSambu.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+            <div
+                class="book-card bg-primary/5 border border-primary/10 rounded-xl overflow-hidden hover:border-primary/30 transition-all group hover:-translate-y-2 hover:shadow-xl">
+                <div
+                    class="aspect-[3/2] bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
+                    <span class="material-icons text-white" style="font-size: 64px;">groups</span>
+                </div>
+                <div class="p-6">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-primary mb-2 block">Academic
+                        Paper</span>
+                    <h3 class="text-lg font-bold mb-2">AGMs in the Era of Covid-19</h3>
+                    <p class="text-xs text-slate-500 mb-3 italic">The Eastern Africa Law Review Journal, U. of Dar es
+                        Salaam, 2021</p>
+                    <p class="text-sm text-slate-300 line-clamp-2">Law and practice in Tanzania — options for virtual
+                        AGMs during pandemic restrictions.</p>
+                    <a href="https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893457/macha-school/author-portfolio/Docs/AnnualGeneralMeetingsintheEraofCovid-19Pandemic-LawandPracticeinTanzania.pdf"
+                        download
+                        class="mt-4 w-full py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all">
+                        <span class="material-icons text-sm">download</span>Download PDF
+                    </a>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-primary/10 pt-12">
+                <form id="newsletter-form" class="max-w-xl">
+                    <h4 class="font-bold text-lg mb-2">Stay Updated</h4>
+                    <p class="text-sm text-slate-500 mb-6">Get notified about new publications and insights directly in
+                        your inbox.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" required
+                            class="flex-1 bg-primary/5 border border-primary/20 rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary outline-none"
+                            placeholder="Your email address">
+                        <button type="submit"
+                            class="bg-primary text-white font-bold py-4 px-10 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                            <span class="material-icons text-sm">mail</span> Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="border-t border-primary/10 bg-background-light dark:bg-background-dark py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <span class="text-lg font-bold tracking-tight">ERIC <span class="text-primary">SAMBU</span></span>
+                <p class="text-sm text-slate-500 mt-2">&copy; 2025 All Rights Reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a class="text-slate-300 hover:text-primary transition-colors"
+                    href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"><i
+                        class="material-icons">public</i></a>
+                <a class="text-slate-300 hover:text-primary transition-colors" href="#"><i
+                        class="material-icons">alternate_email</i></a>
+                <a class="text-slate-300 hover:text-primary transition-colors" href="#"><i
+                        class="material-icons">share</i></a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            function updateBookCards() {
+                // Re-select cards because they might be dynamically changing visibility? No, just static list.
+                // But safer to keep logic clean.
+                const bookCards = document.querySelectorAll('.book-card');
+                return bookCards;
+            }
+
+            let activeFilter = 'all';
+
+            function filterBooks() {
+                const bookCards = document.querySelectorAll('.book-card');
+                const searchTerm = searchInput.value.toLowerCase();
+
+                bookCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    // Select category span from either overlay (Books) or p-6 (Academic)
+                    const categorySpan = card.querySelector('.overlay span') || card.querySelector('.p-6 span');
+                    // Normalize text: remove newlines, extra spaces
+                    const categoryRaw = categorySpan ? categorySpan.textContent.replace(/\s+/g, ' ').trim() : '';
+                    const category = categoryRaw;
+
+                    const matchesSearch = title.includes(searchTerm);
+                    let matchesFilter = (activeFilter === 'all');
+
+                    if (!matchesFilter) {
+                        if (activeFilter === 'Books') {
+                            // "Books" should exclude Academic items
+                            matchesFilter = !category.includes('Academic');
+                        } else if (activeFilter === 'Academic') {
+                            matchesFilter = category.includes('Academic');
+                        } else {
+                            // Exact match for other categories
+                            matchesFilter = (category === activeFilter);
+                        }
+                    }
+
+                    if (matchesSearch && matchesFilter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white', 'shadow-lg');
+                        b.classList.add('bg-primary/10', 'text-slate-600', 'dark:text-slate-300');
+                    });
+
+                    btn.classList.remove('bg-primary/10', 'text-slate-600', 'dark:text-slate-300');
+                    btn.classList.add('bg-primary', 'text-white', 'shadow-lg');
+
+                    activeFilter = btn.dataset.filter;
+                    filterBooks();
+                });
+            });
+
+            searchInput.addEventListener('input', filterBooks);
+        });
+    </script>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu-btn"
+            class="absolute top-6 right-6 p-2 text-slate-900 dark:text-white cursor-pointer hover:rotate-90 transition-transform duration-300">
+            <span class="material-icons text-3xl">close</span>
+        </button>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="collection.html">Publications</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#credentials">Credentials</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#about">About</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#expertise">Expertise</a>
+        <a href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"
+            class="px-8 py-3 bg-primary text-white rounded-full font-bold uppercase tracking-widest hover:bg-primary/90 transition-all">Connect</a>
+    </div>
+
+    <!-- External JavaScript Modules -->
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/newsletter.js"></script>
+    <script>
+        // Use external Supabase client if needed by page-specific logic
+        // Page-specific logic remains here
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Balanced Edge | Eric Sambu</title>
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dn4dszfra/image/upload/v1771174376/macha-school/macha-school/author-portfolio/Images/favicon.png" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#3211d4", "background-light": "#f6f6f8", "background-dark": "#1a162e" },
+                    fontFamily: { "display": ["Inter", "sans-serif"] },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-display">
+    <nav
+        class="border-b border-primary/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-primary rounded flex items-center justify-center"><span
+                            class="material-icons text-white text-sm">menu_book</span></div>
+                    <a href="index.html" class="text-xl font-bold tracking-tight">ERIC <span
+                            class="text-primary">SAMBU</span></a>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="collection.html">Publications</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html#credentials">Credentials</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="index.html#about">About</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank">LinkedIn</a>
+
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-900 dark:text-white p-2">
+                    <span class="material-icons">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5 space-y-8">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-4 bg-primary/20 blur-3xl opacity-30 rounded-full group-hover:opacity-50 transition-opacity">
+                    </div>
+                    <div class="relative aspect-[2/3] w-full rounded-xl overflow-hidden shadow-2xl shadow-primary/20">
+                        <img id="book-cover" alt="The Balanced Edge Book Cover"
+                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                            src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770917361/macha-school/macha-school/author-portfolio/Images/balanced_edge_v2.png" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 py-6 border-y border-primary/10">
+                    <div class="text-center">
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Category</p>
+                        <p id="book-category" class="font-semibold">Leadership</p>
+                    </div>
+                    <div class="text-center border-x border-primary/10">
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Language</p>
+                        <p class="font-semibold">English</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Released</p>
+                        <p id="book-year" class="font-semibold">2025</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div
+                        class="w-20 h-24 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                        <span class="material-icons text-primary">auto_stories</span>
+                    </div>
+                    <div
+                        class="w-20 h-24 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                        <span class="material-icons text-primary">headphones</span>
+                    </div>
+                    <div
+                        class="w-20 h-24 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+                        <span class="material-icons text-primary">workspace_premium</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:col-span-7">
+                <div class="mb-8">
+                    <nav class="flex mb-4 text-sm text-slate-500">
+                        <a class="hover:text-primary" href="collection.html">Publications</a><span
+                            class="mx-2">/</span><a class="hover:text-primary" href="#">Books</a><span
+                            class="mx-2">/</span><span id="breadcrumb-title" class="text-slate-300">The Balanced
+                            Edge</span>
+                    </nav>
+                    <h1 id="book-title" class="text-4xl md:text-5xl font-bold mb-4">The Balanced Edge</h1>
+                    <div class="flex items-center gap-4 mb-6">
+                        <div id="hero-rating-stars" class="flex text-amber-400">
+                            <!-- Stars will be injected here -->
+                        </div>
+                        <span id="hero-review-count" class="text-sm text-slate-300"></span>
+                        <span id="hero-tag"
+                            class="hidden px-2 py-0.5 rounded bg-primary/10 text-primary text-[10px] font-bold tracking-tighter uppercase"></span>
+                    </div>
+                    <p id="hero-quote"
+                        class="text-lg text-slate-300 leading-relaxed max-w-2xl italic border-l-4 border-primary pl-6">
+                    </p>
+                </div>
+                <div class="space-y-4 mb-8">
+                    <h3 class="text-sm font-semibold uppercase tracking-widest text-slate-500">Select Format</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div
+                            class="relative group cursor-pointer border-2 border-primary bg-primary/5 rounded-xl p-4 transition-all">
+                            <div class="flex flex-col h-full"><span class="text-sm font-medium">E-book</span><span
+                                    id="book-price-ebook" class="text-2xl font-bold mt-2">$10.00</span><span
+                                    class="text-xs text-slate-500 mt-1">Instant Delivery</span></div>
+                            <div class="absolute top-2 right-2">
+                                <div class="w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a id="buy-button" href="#" target="_blank"
+                        class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all active:scale-[0.98]"><span
+                            class="material-icons">shopping_cart</span>Buy on Lulu.com</a>
+                    <a id="amazon-button" href="#" target="_blank"
+                        class="hidden flex-1 bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-8 rounded-xl items-center justify-center gap-3 transition-all active:scale-[0.98]"><span
+                            class="material-icons">shopping_bag</span>Buy on Amazon</a>
+                    <a id="download-button" href="#" download
+                        class="hidden flex-1 bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl items-center justify-center gap-3 transition-all active:scale-[0.98]"><span
+                            class="material-icons">download</span>Download PDF</a>
+                    <button
+                        class="flex-1 border-2 border-primary/20 hover:border-primary/40 text-primary font-bold py-4 px-8 rounded-xl flex items-center justify-center gap-3 transition-all"><span
+                            class="material-icons">visibility</span>Read Sample</button>
+                </div>
+                <div class="border-t border-primary/10 pt-8">
+                    <div class="flex gap-8 mb-6 overflow-x-auto pb-2 custom-scrollbar">
+                        <button
+                            class="text-sm font-bold border-b-2 border-primary pb-2 whitespace-nowrap">Synopsis</button>
+                        <a href="about-eric-sambu.html"
+                            class="text-sm font-bold text-slate-500 hover:text-primary pb-2 transition-colors whitespace-nowrap">About
+                            the Author</a>
+                        <button
+                            class="text-sm font-bold text-slate-500 hover:text-primary pb-2 transition-colors whitespace-nowrap">Details</button>
+                    </div>
+                    <div id="book-synopsis" class="prose prose-invert max-w-none text-slate-300 space-y-4">
+                        <p>The goal of "Balanced Edge" is to empower professionals to master their wellbeing in the
+                            demanding, fast-paced world they navigate daily. It seeks to inspire a transformative shift
+                            in how readers perceive and engage with their health, stress, relationships, and overall
+                            life balance. By offering compassionate guidance and actionable strategies, the book aims to
+                            help professionals reclaim vitality and harmony, reduce burnout, and sustainably enhance
+                            both personal and professional fulfilment. It aspires to be a lasting companion that fosters
+                            resilience, mindfulness, and purposeful living, enabling readers to thrive with energy, joy,
+                            and presence despite external pressures.</p>
+                        <p>It aspires to be a lasting companion that fosters resilience, mindfulness, and purposeful
+                            living, enabling readers to thrive with energy, joy, and presence despite external
+                            pressures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="mt-24">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold">Reader Reviews</h2>
+                <button id="write-review-btn" class="text-primary font-semibold text-sm hover:underline">Write a
+                    Review</button>
+            </div>
+            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Reviews will be loaded dynamically here -->
+            </div>
+        </section>
+        <section class="mt-24 mb-12">
+            <h2 class="text-2xl font-bold mb-8">More from Eric Sambu</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6">
+                <a class="group" href="book-detail.html?title=The Board of Directors">
+                    <div class="aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 mb-3"><img
+                            alt="The Board of Directors"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                            src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770910403/macha-school/author-portfolio/Images/board%20of%20directors%203-d%20cover%203.png" />
+                    </div>
+                    <p class="text-sm font-semibold truncate">The Board of Directors</p>
+                    <p class="text-xs text-slate-500">Governance &bull; USD 16.80</p>
+                </a>
+                <a class="group" href="book-detail.html?title=ESG and Sustainability Reporting">
+                    <div class="aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 mb-3"><img
+                            alt="ESG and Sustainability Reporting"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                            src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770911267/macha-school/author-portfolio/Images/ESG%20and%20Sustainability%20Reporting%20Book%203-D%20Cover.jpg" />
+                    </div>
+                    <p class="text-sm font-semibold truncate">ESG & Sustainability Reporting</p>
+                    <p class="text-xs text-slate-500">ESG &bull; USD 9.90</p>
+                </a>
+                <a class="group" href="book-detail.html?title=Principled Leadership">
+                    <div class="aspect-[2/3] rounded-lg overflow-hidden bg-slate-800 mb-3"><img
+                            alt="Principled Leadership"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                            src="https://res.cloudinary.com/dn4dszfra/image/upload/v1770913238/macha-school/author-portfolio/Images/principled_leadership_v2.png" />
+                    </div>
+                    <p class="text-sm font-semibold truncate">Principled Leadership</p>
+                    <p class="text-xs text-slate-500">Leadership &bull; USD 10.34</p>
+                </a>
+                <a href="collection.html"
+                    class="flex flex-col items-center justify-center aspect-[2/3] rounded-lg border-2 border-dashed border-primary/20 hover:border-primary/50 transition-colors cursor-pointer group">
+                    <span
+                        class="material-icons text-primary/40 group-hover:text-primary transition-colors mb-2">add_circle_outline</span>
+                    <p class="text-xs font-medium text-slate-500">View All Works</p>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="border-t border-primary/10 py-12 mt-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div><span class="text-xl font-bold tracking-tight">ERIC <span class="text-primary">SAMBU</span></span>
+                    <p class="text-xs text-slate-500 mt-2">&copy; 2025 Eric Sambu. All rights reserved.</p>
+                </div>
+                <div class="flex gap-6">
+                    <a class="text-slate-300 hover:text-primary transition-colors"
+                        href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"><span
+                            class="material-icons">public</span></a>
+                    <a class="text-slate-300 hover:text-primary transition-colors" href="#"><span
+                            class="material-icons">alternate_email</span></a>
+                    <a class="text-slate-300 hover:text-primary transition-colors" href="#"><span
+                            class="material-icons">share</span></a>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-primary/10 pt-12">
+                <form id="newsletter-form" class="max-w-xl">
+                    <h4 class="font-bold text-lg mb-2">Stay Updated</h4>
+                    <p class="text-sm text-slate-500 mb-6">Get notified about new publications and insights directly in
+                        your inbox.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" required
+                            class="flex-1 bg-primary/5 border border-primary/20 rounded-lg px-6 py-4 focus:ring-2 focus:ring-primary outline-none"
+                            placeholder="Your email address">
+                        <button type="submit"
+                            class="bg-primary text-white font-bold py-4 px-10 rounded-lg hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+                            <span class="material-icons text-sm">mail</span> Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const booksData = {
+            "The Board of Directors": {
+                "subtitle": "Corporate Governance",
+                "description": "More than a mere committee of individuals; the heartbeat of corporate governance. A comprehensive exploration of oversight, strategy, and ethical stewardship.",
+                "synopsis": "The Board of Directors: The Heart of Corporate Governance' unfurls its pages to reveal the essential roles, responsibilities, and frameworks that breathe life into corporate governance. It begins by exploring the vital necessity of having a board of directors, delving into legal and corporate governance best practices that serve as the cornerstone of any successful organization. As readers journey through the chapters, they will encounter a rich tapestry of board types—from unitary to advisory—each painted vividly with examples that illustrate their unique functions and significance. Key considerations for constituting a board are meticulously examined, highlighting the delicate balance between statutory requirements and the organization's evolving needs. With a keen focus on promoting diversity and inclusion, the narrative elucidates the best practices for sourcing directors who possess the qualifications and competencies essential for effective governance.<br><br>As the story unfolds, it navigates through the complexities of conflict of interest, nomination procedures, and performance reviews, engaging readers with real-world case studies that breathe life into abstract concepts. The journey does not shy away from the darker corners of governance, tackling the consequences of breaching director duties and providing cautionary tales that resonate deeply. As the pages turn, themes of board effectiveness, independence, and the courage to challenge the status quo emerge, creating an atmosphere of empowerment that encourages proactive engagement among board members. The book culminates in a forward-looking exploration of emerging trends in corporate governance, inviting readers to embrace the future with optimism and resilience. This narrative is not just a guide; it is a call to action for every reader to recognize the profound impact they can have within the boardroom and beyond, crafting a legacy of integrity and excellence in corporate governance.",
+                "url": "https://www.lulu.com/shop/eric-sambu/the-board-of-directors/ebook/product-w4798n4.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "16.80",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770910403/macha-school/author-portfolio/Images/board%20of%20directors%203-d%20cover%203.png",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 4.9,
+                "reviewCount": 42,
+                "tag": "Bestseller",
+                "quote": "The definitive guide to understanding the heartbeat of corporate governance.",
+                "amazonUrl": "https://a.co/d/04z1VM7a",
+                "reviews": [
+                    { "name": "Sarah Jenkins", "rating": 5, "text": "Finally, a book that understands the boardroom dynamics inside out." },
+                    { "name": "Michael Ross", "rating": 4.5, "text": "Governance explained simply yet profoundly. A must-have for directors." },
+                    { "name": "James P.", "rating": 5, "text": "A crucial resource for new and experienced directors alike." }
+                ]
+            },
+            "From Leads to Profits": {
+                "subtitle": "Building a Scalable Revenue Engine",
+                "description": "Unveils a comprehensive, actionable playbook for transforming chaotic sales and marketing efforts into a harmonious, profit-generating system.",
+                "synopsis": "From Leads to Profits unveils a comprehensive, actionable playbook for transforming chaotic sales and marketing efforts into a harmonious, profit-generating system tailored for the digital era and the African marketplace. The book opens by diagnosing the common dilemma businesses face: an abundance of leads but insufficient profits, highlighting the disconnect between volume and value. Introducing the Profit Pipeline Framework—Attract, Nurture, Convert, Delight, Analyse—it lays the foundation for a repeatable, scalable Revenue Engine.<br><br>It dives into attracting high-intent leads by crafting magnetic messaging and selecting optimal channels, supported by content strategies that resonate at every stage. It underscores the importance of metrics like CAC and LTV, and the pitfalls of spray-and-pray marketing.",
+                "url": "#",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770909952/macha-school/author-portfolio/Images/From%20Leads%20to%20Profits.png",
+                "category": "Marketing",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Transforming chaotic sales efforts into a harmonious, profit-generating system.",
+                "reviews": []
+            },
+            "Forensic Accounting": {
+                "subtitle": "Unmasking Deception in the Digital Age",
+                "description": "A comprehensive guide that intricately weaves together the principles of accounting, investigative rigor, psychology, law, and technology.",
+                "synopsis": "Forensic Accounting and Fraud Examination: Unmasking Deception in the Digital Age is a comprehensive guide that intricately weaves together the principles of accounting, investigative rigor, psychology, law, and technology to equip readers with the expertise to combat financial crime in the modern world. Beginning with foundational concepts, it distinguishes forensic accounting from traditional auditing and outlines the profession's ethical and certification landscape.<br><br>The narrative delves into the psychology of fraudsters, exploring models like the Fraud Triangle, Fraud Diamond, and M.I.C.E., alongside profiling techniques to identify typical perpetrators. The book then navigates the complex legal frameworks governing fraud, highlighting critical laws and the roles of regulatory agencies.",
+                "url": "#",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770909948/macha-school/author-portfolio/Images/Forensic%20book%20cover%203-D.png",
+                "category": "Finance",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Equipping readers with the expertise to combat financial crime in the digital era.",
+                "reviews": []
+            },
+            "Leading into the Future": {
+                "subtitle": "Navigating Leadership in the AI Era",
+                "description": "Explores the profound impact of Artificial Intelligence on leadership across all sectors.",
+                "synopsis": "Leading into the Future: Navigating Leadership in the AI Era explores the profound impact of Artificial Intelligence on leadership across all sectors. The book begins by examining the rise of AI and its transformative effects on business landscapes and leadership roles. It highlights how traditional leadership models are evolving as AI integration becomes ubiquitous, requiring new skills and mindsets.<br><br>The narrative progresses into strategic AI adoption, detailing how leaders can build effective roadmaps that balance innovation with practical implementation. It delves into AI-enhanced decision making, emphasizing the critical interplay between human judgment and machine insights, advocating for a collaborative approach that leverages both strengths.",
+                "url": "#",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770909956/macha-school/author-portfolio/Images/Leading%20into%20the%20future%203-D%20Cover.png",
+                "category": "Leadership / AI",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "A new leadership paradigm that embraces AI as a tool for transformative growth.",
+                "reviews": []
+            },
+            "Closing the Deal": {
+                "subtitle": "The Art of Negotiation",
+                "description": "Unveils the transformative journey of negotiation, shifting from linear tactics to an exhilarating improvisational art.",
+                "synopsis": "Closing the Deal: The Art of Negotiation unveils the transformative journey of negotiation, shifting from the conventional view of a linear, tactical approach to an exhilarating improvisational art. The narrative begins with the protagonist, Alex, a seasoned negotiator who, after years of relying on rigid methods, confronts a pivotal moment when traditional tactics fail during a high-stakes deal with a rival firm. Feeling the weight of impending chaos, Alex encounters a mentor, an enigmatic figure steeped in the philosophy of negotiation as an art form.<br><br>Together, they explore the fluidity of negotiation through vivid metaphors and immersive experiences. The book illustrates the \"Map\" analogy, guiding readers through the intricate pathways of negotiation, encouraging them to adapt and pivot in the face of obstacles. As Alex learns to embrace the chaos, they discover the power of preparation and perspective-taking, building a foundation for successful negotiations. The emotional depth of the story unfolds as Alex grapples with their own fears, learning the vital skills of emotional control, confidence, and mental toughness. Through active listening and strategic silence, the lessons learned are woven into each negotiation, enriching the tapestry of the narrative. The climax reveals the profound impact of the \"Generating Options\" strategy, where creativity blooms, allowing Alex to close the deal in an unexpected and satisfying way. The resolution frames negotiation not merely as a transactional activity but as a soulful engagement that can deepen relationships and foster trust. In its final pages, the book leaves readers inspired and equipped, ready to turn the chaos of negotiation into a masterpiece of collaboration and understanding.",
+                "url": "#",
+                "price": "13.50",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770910590/macha-school/author-portfolio/Images/Closing%20the%20Deal%203-D%20cover.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Turning the chaos of negotiation into a masterpiece of collaboration.",
+                "reviews": []
+            },
+            "ESG and Sustainability Reporting": {
+                "subtitle": "Principles, Frameworks and Standards",
+                "description": "A comprehensive guide on ESG and sustainability reporting \u2014 demystifying frameworks, standards, and empowering credible ESG disclosures.",
+                "synopsis": "This book serves as a comprehensive and authoritative guide on ESG (Environmental, Social, and Governance) and sustainability reporting, targeting professionals, academics, regulators, and businesses engaged in or interested in sustainable practices and transparent reporting. Its impact demystifies the complex landscape of ESG reporting frameworks and standards, provides clarity on key principles and regulations globally, and empowers readers to implement effective, credible, and forward-looking ESG disclosures.",
+                "url": "https://www.lulu.com/shop/eric-sambu/esg-and-sustainability-reporting/ebook/product-65jwpm5.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "9.90",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911267/macha-school/author-portfolio/Images/ESG%20and%20Sustainability%20Reporting%20Book%203-D%20Cover.jpg",
+                "category": "ESG",
+                "year": "2025",
+                "rating": 4.8,
+                "reviewCount": 35,
+                "tag": "Trending",
+                "quote": "Demystifying frameworks and empowering credible ESG disclosures for the future.",
+                "amazonUrl": "https://a.co/d/0805aDJ0",
+                "reviews": [
+                    { "name": "Emily Chen", "rating": 5, "text": "Clarified so much about the new standards. Invaluable for our team." },
+                    { "name": "David Kim", "rating": 4.5, "text": "A practical guide for our reporting cycle. Highly recommended." },
+                    { "name": "Rachel Green", "rating": 5, "text": "Essential reading for modern business leaders focusing on sustainability." }
+                ]
+            },
+            "Corporate Moral Responsibility": {
+                "subtitle": "Ethical Business and Sustainability",
+                "description": "Where profits are balanced with purpose \u2014 assessing challenges and actionable steps to align ethical practices with corporate behavior and sustainability.",
+                "synopsis": "Imagine a future where profits are balanced with purpose, where ethical practices guide corporate behavior, and where sustainability is woven into the fabric of business operations. This book assesses the challenges in place and recommends actionable steps to align with this vision, reshaping the landscape not only for their organizations but for the world at large. By embracing comprehensive strategies, fostering ethical cultures, enhancing transparency, and engaging with all stakeholders, companies can be at the forefront of a new era defined by integrity and sustainability.",
+                "url": "https://www.lulu.com/shop/dr-eric-sambu/corporate-moral-responsibility/ebook/product-v8mym8m.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "12.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911062/macha-school/author-portfolio/Images/Corporate%20Moral%20Responsibility.png",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 4.5,
+                "reviewCount": 18,
+                "tag": "",
+                "quote": "Balancing profit with purpose: a roadmap for ethical business.",
+                "amazonUrl": "https://a.co/d/0hwJ9Njj",
+                "reviews": [
+                    { "name": "Prof. H. K.", "rating": 5, "text": "A timely reminder that business is about more than just profit." },
+                    { "name": "Business Weekly", "rating": 4, "text": "Thought-provoking and necessary for today's corporate climate." }
+                ]
+            },
+            "Balanced Edge": {
+                "subtitle": "Mastering Wellbeing for Professionals in a Demanding World",
+                "description": "Empowering professionals to master wellbeing \u2014 reclaim vitality, reduce burnout, and sustainably enhance personal and professional fulfilment.",
+                "synopsis": "\"Balanced Edge\" is a comprehensive guide tailored for professionals facing the relentless demands of modern work life. The book begins by acknowledging the intense pressures and the chaos that professionals endure, setting the stage for a transformative journey toward wellbeing. It opens with an exploration of work-life balance, emphasizing the importance of setting boundaries and prioritizing time for oneself amid professional commitments.<br><br>Next, it delves into stress management techniques, illustrating how chronic stress manifests and how mindfulness, meditation, and cognitive tools can build mental resilience. The narrative then expands to the crucial role of nutrition and physical activity, advocating for mindful eating and consistent movement as pillars of vitality. The book also highlights the significance of nurturing healthy relationships, showing how social connections bolster emotional health and professional success. It addresses weight management compassionately, focusing on sustainable habits rather than quick fixes.<br><br>Medical self-care is presented as proactive prevention against lifestyle diseases, encouraging regular check-ups and informed health choices. Throughout these themes, \"Balanced Edge\" integrates vivid imagery and relatable anecdotes that create a sense of calm and clarity. Each chapter concludes with practical toolkits—breathing exercises, meal plans, time management tips—providing readers tangible steps to implement immediately.<br><br>The climax of the book synthesizes these elements into a holistic wellbeing practice, inspiring readers to cultivate presence and purpose. Ultimately, \"Balanced Edge\" offers a hopeful, empowering roadmap for professionals to thrive fully in all facets of life, transforming stress into strength and chaos into balance.",
+                "url": "https://www.lulu.com/shop/eric-sambu/balanced-edge/ebook/product-zmwd4e5.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "10.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770917361/macha-school/macha-school/author-portfolio/Images/balanced_edge_v2.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 4.8,
+                "reviewCount": 85,
+                "tag": "New Release",
+                "quote": "A comprehensive guide tailored for professionals facing the relentless demands of modern work. Practical, insightful, and deeply relevant.",
+                "reviews": [
+                    { "name": "James Mwangi", "rating": 5, "text": "A must-read for every professional in East Africa. The practical frameworks for managing stress while maintaining high performance are genuinely transformative." },
+                    { "name": "Sophia Luhikula", "rating": 4.5, "text": "Eric brings decades of governance experience into an accessible, deeply practical guide. Essential reading for anyone in senior management." },
+                    { "name": "David Njoroge", "rating": 4, "text": "The chapters on decision-making under pressure and leading through organisational transformation resonated strongly with my own experience." }
+                ]
+            },
+            "From Where I Stand": {
+                "subtitle": "A Leadership Perspective in the Corporate World",
+                "description": "Personal experiences from a leader at the top of the corporate world for nearly two decades \u2014 a living library of real-world corporate wisdom.",
+                "synopsis": "It is a privilege to read this book on personal experiences by CPA Eric Sambu, a leader who has been at the top of the corporate world for nearly two decades. He is leading an institution that commands huge respect in the market, demonstrated by the awards they have won. He is a serial winner at his personal level. The few who share their experiences often prefer to give a talk, but only upon invitation. If only they could sit down and write about their experiences and approaches to handling issues in the real corporate world. They are living libraries.",
+                "url": "https://www.lulu.com/shop/eric-sambu/from-where-i-stand-a-leadership-perspective-in-the-corporate-world/ebook/product-gjdddng.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "6.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770957001/macha-school/macha-school/author-portfolio/Images/from_where_i_stand_v2.png",
+
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 5.0,
+                "reviewCount": 24,
+                "tag": "Staff Pick",
+                "quote": "A living library of real-world corporate wisdom from a top industry leader.",
+                "reviews": [
+                    { "name": "Tom W.", "rating": 5, "text": "Authentic and raw. purely inspiring leadership journey." },
+                    { "name": "Grace L.", "rating": 5, "text": "Real world wisdom that simply cannot be taught in a classroom." }
+                ]
+            },
+            "Environmental, Social, and Governance (ESG)": {
+                "subtitle": "Principles, Practices and Reporting Requirements",
+                "description": "A journey through ESG principles, practices and implications \u2014 with success stories from East Africa and actionable steps for sustainability.",
+                "synopsis": "This book is a journey through the principles, practices, and implications of Environmental, Social, and Governance (ESG) initiatives. It illuminates the intricacies of sustainable development and its profound relevance in today's world. It demonstrates how organizations that embrace ESG frameworks not only position themselves as leaders in sustainability but also enhance their competitive advantage. It contains success stories from developing countries, especially the East African context.",
+                "url": "https://www.lulu.com/shop/eric-sambu/environmental-social-and-governance-esg/ebook/product-e7dd8zn.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "12.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911268/macha-school/author-portfolio/Images/Environmental%2C%20Social%2C%20and%20Governance.jpg",
+                "category": "ESG",
+                "year": "2025",
+                "rating": 4.5,
+                "reviewCount": 12,
+                "tag": "",
+                "quote": "Illuminating the intricacies of sustainable development in East Africa.",
+                "reviews": [
+                    { "name": "Sustainability Matters", "rating": 4.5, "text": "Comprehensive and well-structured. A great primer." }
+                ]
+            },
+            "Insight Into Incident Investigation": {
+                "subtitle": "Mastering Techniques, Law, and Ethics",
+                "description": "Illuminating the world of incident investigation \u2014 crime scenes, cyber breaches, and near-misses with methodical, ethical rigor.",
+                "synopsis": "Step into the intricate world of incident investigation where every detail whispers a story waiting to be uncovered. \"Insight into Incident Investigation\" illuminates the shadowy corridors of crime scenes, cyber breaches, and near-misses with a clear, methodical light. The book serves as a compass for professionals navigating the complexities of reasoning, legal rights, and investigative theories.",
+                "url": "https://www.lulu.com/shop/eric-sambu/insight-into-incident-investigation/ebook/product-yv9djjz.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "10.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911484/macha-school/author-portfolio/Images/Investigation%203-D%20Cover%202.png",
+                "category": "Security",
+                "year": "2025",
+                "rating": 5.0,
+                "reviewCount": 9,
+                "tag": "Niche",
+                "quote": "A compass for professionals navigating the complexities of incident investigation.",
+                "reviews": [
+                    { "name": "Detective K.", "rating": 5, "text": "Methodical and precise. A textbook example of how it should be done." }
+                ]
+            },
+            "Principled Leadership": {
+                "subtitle": "A Guide to Ethical Decision-making",
+                "description": "A compass and beacon for leaders navigating tumultuous waters \u2014 illuminating pathways to ethical decision-making and responsible governance.",
+                "synopsis": "In the intricate tapestry of our increasingly interconnected world, the nature of leadership has evolved, revealing the pressing need for a new paradigm \u2014 one shaped not just by results, metrics, or the relentless pursuit of profit, but by principles rooted in ethical integrity, transparency, and an unwavering commitment to fairness and justice.",
+                "url": "https://www.lulu.com/shop/eric-sambu/principled-leadership/ebook/product-kvj97ny.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "10.34",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770913238/macha-school/author-portfolio/Images/principled_leadership_v2.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 4.9,
+                "reviewCount": 56,
+                "tag": "",
+                "quote": "A beacon for leaders navigating the tumultuous waters of modern governance.",
+                "amazonUrl": "https://a.co/d/0aPx08xX",
+                "reviews": [
+                    { "name": "Dr. Alistair", "rating": 5, "text": "Ethics in leadership is rare, this book is a beacon." },
+                    { "name": "Jessica M.", "rating": 5, "text": "Transformative for my leadership style. A guiding light." },
+                    { "name": "Samuel O.", "rating": 4.5, "text": "Integrity first. A powerful message for the modern CEO." }
+                ]
+            },
+            "Transfer Pricing": {
+                "subtitle": "An International Taxation Perspective",
+                "description": "Your guide to understanding intricate transfer pricing rules \u2014 from the arm's length principle to the East African landscape.",
+                "synopsis": "This book gives you background to understand what transfer pricing is all about. It becomes your guide to understanding the intricate rules and strategies that govern how Multinational Enterprises (MNEs) price their internal transactions. It explores the core principle of the arm's length principle, a concept that seems simple on the surface but is notoriously difficult to apply in practice.",
+                "url": "https://www.lulu.com/shop/eric-sambu/transfer-pricing/ebook/product-zmr672e.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "11.99",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770958932/macha-school/macha-school/author-portfolio/Images/transfer_pricing_v2.png",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 4.5,
+                "reviewCount": 21,
+                "tag": "",
+                "quote": "Demystifying the intricate rules of international taxation.",
+                "amazonUrl": "https://a.co/d/0fRboCtB",
+                "reviews": [
+                    { "name": "CFO Monthly", "rating": 4, "text": "Taxation made understandable. Excellent for our finance team." },
+                    { "name": "Corp. Legal Team", "rating": 5, "text": "Critical for our cross-border operations." }
+                ]
+            },
+            "Contemporary Leadership": {
+                "subtitle": "Lessons from African Customs",
+                "description": "Ubuntu, harambee, fireside stories, the role of elders \u2014 timeless African customs offering powerful lessons for today's leadership.",
+                "synopsis": "Imagine the African customs like: Ubuntu, harambee, ethos, baobab tree, fireside stories, the role of elders, consensus building, communalism, the rites of passage, the drums and dance and the concept of the village raising a child. Can these pose any lessons to today's leadership? This book tells us indeed there are many lessons. Buckle up and enjoy flipping through the pages and learn how.",
+                "url": "https://www.lulu.com/shop/eric-sambu/contemporary-leadership-lessons-from-african-customs/ebook/product-rmrqy9k.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "11.11",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911061/macha-school/author-portfolio/Images/Contemporary%20Leadership%203-D%20Book%20Cover%202.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 4.7,
+                "reviewCount": 33,
+                "tag": "Popular",
+                "quote": "Timeless African customs offering powerful lessons for today's leadership.",
+                "reviews": [
+                    { "name": "Cultural Geographer", "rating": 5, "text": "Bridging tradition and modernity perfectly." },
+                    { "name": "Team Lead", "rating": 4.5, "text": "Ubuntu in the office? It actually works. Great read." }
+                ]
+            },
+            "Personal Data Protection": {
+                "subtitle": "Governance and Compliance Requirements",
+                "description": "A new frontier of managing data risks \u2014 understanding principles, governance and compliance with evolving data protection laws in East Africa.",
+                "synopsis": "Data protection is a new frontier of managing risks associated with data loss or misuse. With many jurisdictions yet to set regulations, it is important for everyone to understand the principles, governance and compliance requirements with the evolving data protection laws. This book illuminates these aspects and assesses the East African context, with judicial precedents so far set.",
+                "url": "https://www.lulu.com/shop/eric-sambu/personal-data-protection/ebook/product-gjdk75m.html?q=eric+sambu&page=1&pageSize=4",
+                "price": "10.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770914000/macha-school/author-portfolio/Images/personal_data_protection_v2.png",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 4.0,
+                "reviewCount": 15,
+                "tag": "",
+                "quote": "Understanding governance and compliance in the new frontier of data risks.",
+                "reviews": [
+                    { "name": "IT Security Lead", "rating": 4, "text": "A good overview of the compliance landscape in East Africa." }
+                ]
+            },
+            "Governance, Risk and Compliance (GRC)": {
+                "subtitle": "Organizational Resilience and Ethics",
+                "description": "Mastering the principles and practices of GRC to ensure organizational resilience and ethical excellence.",
+                "synopsis": "Governance, Risk management, and Compliance (GRC) are three related facets that aim to assure an organization reliably achieves objectives, addresses uncertainty and acts with integrity. This book masters the principles and practices of GRC to ensure organizational resilience and ethical excellence.",
+                "url": "#",
+                "price": "14.50",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911409/macha-school/author-portfolio/Images/GRC%203-D%20Cover.jpg",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Ensuring organizational resilience and ethical excellence.",
+                "reviews": []
+            },
+            "Management of Change": {
+                "subtitle": "Navigating Organizational Transformation",
+                "description": "Explores the essence and necessity of change within organizations, emphasizing the human element and effective leadership.",
+                "synopsis": "Management of Change unfolds as a compelling narrative exploring the essence and necessity of change within organizations, like a river flowing through a bustling landscape \u2014 ever-changing, sometimes turbulent, yet always vital. The book starts with a vivid exploration of what change truly means, punctuated by real-world examples that illustrate the profound impact of both successful and failed transitions.<br><br>Delving into key concepts and models, including Lewin's Change Model and Kotter's 8-Step Process, the reader is guided through a vivid landscape where each stage is portrayed with rich imagery \u2014 the 'unfreezing' like the thawing of winter ice, the 'transition' as a metamorphosis akin to a caterpillar becoming a butterfly, and 'refreezing' as the solidification of new norms into the organization's culture.<br><br>The narrative emphasizes the human element, showcasing the emotional responses individuals may have to change: the fear, the resistance, but also the hope and excitement. Through engaging storytelling, the book addresses the critical role of effective leadership in steering change \u2014 depicted as a lighthouse guiding ships through stormy seas. Practical tools and techniques are seamlessly interwoven, providing readers with a toolkit to assess readiness, analyze impact, and celebrate small wins, all illustrated with vibrant metaphors and relatable anecdotes. As the story unfolds, the ultimate message resonates: change is not an enemy to be fought against, but a partner in growth, inviting us to traverse the pathways of transformation with confidence and clarity.",
+                "url": "#",
+                "price": "14.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911689/macha-school/author-portfolio/Images/Management%20of%20Change.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Change is not an enemy to be fought against, but a partner in growth.",
+                "reviews": []
+            },
+            "The Marriage Dance": {
+                "subtitle": "Submit to Your Husbands, Love Your Wives",
+                "description": "A narrative exploring the intricate dynamics of a marital relationship, grounded in biblical principles.",
+                "synopsis": "In \"The Marriage Dance: Submit to Your Husbands, Love Your Wives,\" the narrative unfolds like a beautifully choreographed ballet, where each movement reflects the intricate dynamics of a marital relationship. The book opens with a vivid metaphor: marriage as a dance \u2014 a partnership that flourishes when both individuals learn to move in sync with one another. Drawing on the profound wisdom of Ephesians 5:22-33, it emphasizes the beauty of submission and love, unravelling biblical principles that guide couples towards a harmonious union.<br><br>In Part 1, the reader is led through the scriptures, uncovering the true essence of submission, revealing its transformative power and the mutual respect it fosters. Part 2 shifts focus to the role of wives, portraying them as graceful dancers who, while submitting to their husbands, maintain their individuality and strength. Here, the stories of Sarah and Abigail serve as illuminating examples, highlighting the virtue of respect and trust. In Part 3, husbands are encouraged to embody Christ's selfless love, recognizing their pivotal role in nurturing their wives with care and understanding.<br><br>The narrative crescendos in Part 4, where the importance of communication and conflict resolution is explored, crafting a roadmap for building a robust marriage grounded in faith. As the conclusion draws near, couples are called to reflect on the sacred nature of their union, to embrace these biblical principles, and to dance their unique dance \u2014 each step a testament to their love, faith, and commitment. This book not only addresses the challenges of submission but also envisions a future where the institution of marriage is celebrated and strengthened, even amid societal changes and challenges.",
+                "url": "#",
+                "price": "12.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770911850/macha-school/author-portfolio/Images/Marriage%20Dance%203-D%203.png",
+                "category": "Personal Growth",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Marriage is a dance that flourishes when both individuals move in sync.",
+                "reviews": []
+            },
+            "Mastering Business Finance": {
+                "subtitle": "From Accounting Basics to Strategic Planning",
+                "description": "Guides readers through the comprehensive landscape of business finance, from foundational principles to sophisticated management techniques.",
+                "synopsis": "\"Mastering Business Finance\" guides readers through the comprehensive landscape of business finance, starting with the foundational principles of accounting and advancing to sophisticated financial management techniques. The book opens by demystifying accounting basics, illustrating how every financial transaction impacts business health. It then explores managing accounts payable and receivable, revealing methods to optimize cash flow.<br><br>Readers learn to interpret financial statements like balance sheets, income statements, and cash flow reports, understanding the story they tell about an organization's performance. The narrative advances to cost management and budgeting strategies, teaching how to allocate resources effectively and control expenses. Investment appraisal techniques are introduced, equipping readers with tools to evaluate projects and expansion opportunities critically.<br><br>The book addresses risk management, discussing financial controls and compliance to safeguard assets. It concludes by integrating all these elements into strategic financial planning that drives sustainable growth. Throughout, real-world case studies and exercises provide context and practice, culminating in a confident grasp of how to orchestrate financial stability and innovation in a competitive marketplace.",
+                "url": "#",
+                "price": "16.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770912060/macha-school/author-portfolio/Images/Mastering%20Biz%20Finance%20cover%203-D%204.jpg",
+                "category": "Finance",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Orchestrating financial stability and innovation in a competitive marketplace.",
+                "reviews": []
+            },
+            "Own Your Hours": {
+                "subtitle": "The CEO's Guide to Managing Your One-Person Empire",
+                "description": "Redefines time management as personal leadership, guiding readers to design an operational engine for their lives.",
+                "synopsis": "'Own Your Hours' presents a groundbreaking framework that redefines time management as personal leadership. The book opens with the premise that each individual is the CEO of their own life, the most valuable and complex enterprise they will ever manage. Readers are guided through a five-part journey that begins with a rigorous audit of how they currently spend their time, identifying major time wasters such as urgent but unimportant tasks and unconscious distractions.<br><br>This diagnosis lays the foundation for crafting a clear corporate vision for life, defining core values, and setting long-term and quarterly objectives \u2014 the personal 'mission statement' that guides all decisions. The second part focuses on strategic prioritization using the innovative Empire Matrix, a tool that categorizes tasks by impact and effort, encouraging investment in high impact activities. It introduces the Quarterly Rock System, inspired by business OKRs, to maintain focus on a few major priorities, and emphasizes the power of saying 'no' to protect one's time and boundaries.<br><br>Next, the systematization phase helps readers design an operational engine through time-blocking, theming days, and incorporating rituals such as daily stand-ups and weekly reviews. It advocates for automation, delegation, and elimination of low-ROI tasks, streamlining the workflow to maximize efficiency. Execution strategies delve into mastering deep work sprints, managing communication effectively by batching and templating, and prioritizing energy management aligned with biological rhythms. Practical techniques like distraction-free zones and advanced Pomodoro methods help sustain intense focus.<br><br>Finally, the scaling phase addresses sustaining momentum and growth by embedding continuous learning, preventing burnout through strategic rest, and expanding one\u2019s impact via mentoring or new ventures. The book concludes by reinforcing that owning one\u2019s hours is an ongoing CEO mindset requiring commitment and adaptation. Throughout, readers receive CEO Action Items and Systems to Implement, ensuring that the concepts translate into real, lasting behavioural change.",
+                "url": "#",
+                "price": "12.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770912581/macha-school/author-portfolio/Images/own_your_hours_3d.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Redefining time management as personal leadership.",
+                "reviews": []
+            },
+            "Principled Leadership": {
+                "subtitle": "A Guide to Ethical Decision Making",
+                "description": "Illuminates the way for leaders navigating the complex interplay of integrity and responsibility in a world of ethical dilemmas.",
+                "synopsis": "\"Principled Leadership: A Guide to Ethical Decision Making\" embarks on a transformative journey through the stormy seas of ethical governance, illuminating the way for leaders who seek to navigate the complex interplay of integrity and responsibility. The narrative unfurls in a world fraught with ethical dilemmas where decision-makers find themselves at crossroads, battling the shadows of reputational risks and compliance issues that threaten to engulf their organizations.<br><br>With gripping case studies and vivid examples drawn from real-world scenarios, readers will witness the stark consequences of unethical decisions, from high employee turnover to blacklisting. As the pages turn, key ethical frameworks emerge \u2014 The Blanchard-Peale Framework, the Markkula Centre Framework, and more \u2014 each serving as a lifebuoy amidst turbulent waters. The text delves deep into the essence of ethical leadership, showcasing the core components of integrity, fairness, and corporate responsibility, while providing a comprehensive roadmap for implementing ethical governance.<br><br>It challenges leaders to embrace transparency and psychological safety, fostering a thriving ethical culture that rewards integrity and nurtures the next generation of ethical decision-makers. With an inviting, engaging tone, the book empowers readers to become champions of principled leadership, demonstrating that ethical decision-making is not merely a requirement but a profound opportunity for sustainable success. By the end of the journey, readers will be equipped to face ethical dilemmas with clarity and purpose, ready to create organizations that are not only successful but also exemplary in their commitment to ethical practices.",
+                "url": "#",
+                "price": "15.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770913238/macha-school/author-portfolio/Images/principled_leadership_v2.png",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Ethical decision-making is a profound opportunity for sustainable success.",
+                "reviews": []
+            },
+            "The Art of Strategic Laziness": {
+                "subtitle": "Achieve More by Doing Less",
+                "description": "Distinguishing busyness from true effectiveness \u2014 empowering readers to achieve more by doing less and living intentionally.",
+                "synopsis": "\"The Art of Strategic Laziness\" begins by distinguishing busyness from true effectiveness, introducing readers to self-awareness as a foundation for productivity. It guides them through identifying core values and strengths and shifting toward a growth mindset that fosters resilience. Next, the book helps readers craft a compelling vision and personal mission, laying a strategic framework to prioritize tasks using techniques like the Eisenhower Matrix and the 80/20 rule. Readers learn to break down grand visions into achievable, measurable goals using SMART criteria and OKRs.<br><br>In the action phase, the book covers habit engineering, showing how to build and maintain routines while overcoming procrastination with psychological strategies and energy management aligned with natural rhythms. It introduces focus tools such as digital blockers, Pomodoro timers, and white noise generators, alongside practical tips like single-tasking and deep work blocks.<br><br>The narrative then shifts to interpersonal effectiveness, teaching deep listening, empathy, and the art of saying no to set boundaries. It discusses collaboration principles essential for shared success. The final section highlights sustainable peak performance through the Renewal Principle, emphasizing balance with rest, nutrition, and mental health. It reinforces continuous learning via personalized curricula and integrating all principles into a cohesive, lifelong effective lifestyle.<br><br>Throughout, the book weaves in productivity tools like the 1-3-5 rule, task batching, time blocking, Kanban boards, and meeting best practices. Eastern philosophies such as Ikigai, Kaizen, and Shoshin are introduced as cultural lenses on continuous improvement and purpose. By culminating in a holistic approach that blends mindset, strategy, action, relationships, and sustainability, the book empowers readers to achieve more by doing less and living intentionally.",
+                "url": "#",
+                "price": "11.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770965603/macha-school/macha-school/author-portfolio/Images/The%20Art%20of%20Strategic%20Laziness.jpg",
+                "category": "Leadership",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Achieve more by doing less and living intentionally.",
+                "reviews": []
+            },
+            "Regulating Private Security Industry": {
+                "subtitle": "Asian Journal of Social Science and Management",
+                "description": "Comparative analysis of regulatory regimes for private security in South Africa, Kenya and Tanzania.",
+                "synopsis": "This academic paper explores the regulatory frameworks governing the private security industry in East Africa, drawing comparisons with South Africa's establishing regime. It analyzes the effectiveness of legislative instruments in ensuring accountability, professionalism, and compliance within the sector.",
+                "url": "collection.html",
+                "price": "Free",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770893431/macha-school/author-portfolio/Images/Personal%20Data%20Protection.jpg",
+                "category": "Academic",
+                "year": "2023",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Comparative analysis of regulatory regimes in East Africa.",
+                "downloadUrl": "https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893491/macha-school/author-portfolio/Docs/Regulating%20the%20private%20security%20industry%20in%20Tanzania.pdf",
+                "reviews": []
+            },
+            "Democratisation in Africa": {
+                "subtitle": "Africa Journal of Democracy",
+                "description": "Lessons from the 2022 Kenyan Presidential Election \u2014 best practices for African democratisation.",
+                "synopsis": "An in-depth analysis of the 2022 Kenyan Presidential Election, examining the legal and institutional reforms that contributed to a peaceful and transparent electoral process. The paper offers valuable lessons for other African nations navigating the complex path of democratization.",
+                "url": "collection.html",
+                "price": "Free",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770893431/macha-school/author-portfolio/Images/Personal%20Data%20Protection.jpg",
+                "category": "Academic",
+                "year": "2023",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Lessons on democratization from the 2022 Kenyan Presidential Election.",
+                "downloadUrl": "https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893459/macha-school/author-portfolio/Docs/DemocratisationinAfrica-Lessonsfromthe2022KenyanPresidentialElectionbyEricSambu.pdf",
+                "reviews": []
+            },
+            "AGMs in the Era of Covid-19": {
+                "subtitle": "The Eastern Africa Law Review Journal",
+                "description": "Law and practice in Tanzania \u2014 options for virtual AGMs during pandemic restrictions.",
+                "synopsis": "This paper examines the legal implications of holding Annual General Meetings (AGMs) virtually during the COVID-19 pandemic in Tanzania. It assesses the validity of virtual meetings under existing corporate laws and recommends legislative updates to accommodate digital governance.",
+                "url": "collection.html",
+                "price": "Free",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1770893431/macha-school/author-portfolio/Images/Personal%20Data%20Protection.jpg",
+                "category": "Academic",
+                "year": "2021",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "",
+                "quote": "Legal insights for the modern era.",
+                "downloadUrl": "https://res.cloudinary.com/dn4dszfra/raw/upload/v1770893457/macha-school/author-portfolio/Docs/AnnualGeneralMeetingsintheEraofCovid-19Pandemic-LawandPracticeinTanzania.pdf",
+                "reviews": []
+            },
+            "Root Cause Analysis": {
+                "subtitle": "Solving Problems Before They Recur",
+                "description": "Root Cause Analysis is a transformative discipline that goes beyond traditional reactive troubleshooting to embody a strategic organizational learning practice.",
+                "synopsis": "Root Cause Analysis: Solving Problems Before They Recur presents RCA as a transformative discipline that goes beyond traditional reactive troubleshooting to embody a strategic organizational learning practice. The book begins by challenging common misconceptions about root causes, emphasizing that failures result from complex, systemic interactions rather than single isolated faults. It highlights the psychological biases that impair investigations and the critical need to foster just cultures where errors are openly reported and examined without blame but with accountability.<br><br>The book then systematically explores a suite of RCA methodologies, from simple iterative questioning like the 5 Whys to complex tools like Fault Tree Analysis and Human Factors Analysis and Classification System (HFACS). Each methodology is presented with its strengths, limitations, and real-world case studies illustrating their application in diverse contexts such as aviation disasters, manufacturing defects, and healthcare errors. A detailed investigation process is outlined, covering preparation, data collection, timeline reconstruction, hypothesis testing, cause identification, corrective action development, and reporting.<br><br>Emphasis is placed on practical steps and ethical considerations to ensure thorough, objective, and actionable investigations. The book stresses the importance of implementing corrective actions effectively and closing the feedback loop through verification, validation, and organizational learning. Beyond reactive investigations, the book explores proactive and predictive approaches to RCA, including analysing near misses, Failure Mode and Effects Analysis (FMEA), and leveraging digital technologies like big data and AI to anticipate and prevent failures.<br><br>It further delves into domain-specific applications across healthcare, manufacturing, IT, transportation, and finance, providing tailored insights and case studies. Leadership and culture are recognized as pivotal, with chapters dedicated to fostering learning organizations, ethical investigation practices, and cultivating the investigator's mindset. The conclusion calls readers to embrace RCA as an eternal apprenticeship where every failure is a lesson, advocating curiosity, rigor, and humility to truly learn from what breaks. Overall, the book equips professionals to transform failures into intelligence, building resilient organizations that thrive in complexity.",
+                "url": "#",
+                "price": "13.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1771172987/macha-school/macha-school/author-portfolio/Images/Root_Cause_Analysis.png",
+                "category": "Governance",
+                "year": "2025",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "Transforming failures into intelligence and building resilient organizations.",
+                "reviews": []
+            },
+            "Securing the Perimeter": {
+                "subtitle": "The Complete Guide to Physical Access Control",
+                "description": "An exhaustive guide that unpacks every facet of physical security with a sharp focus on access control systems.",
+                "synopsis": "\"Securing the Perimeter: The Complete Guide to Physical Access Control\" is an exhaustive guide that unpacks every facet of physical security with a sharp focus on access control systems. The book opens by establishing the pivotal role of physical security in enterprise protection, discussing core goals such as deterrence, detection, delay, and response, and emphasizing the principle of layered security. It introduces access control systems, detailing authentication factors, core components, and their integration within total security frameworks. The narrative then delves into the anatomy of access control, exploring credential technologies ranging from mechanical keys to biometrics, and the hardware that interacts with these credentials, including various readers, door locks, exit devices, and controllers. It explains system architectures, communication protocols, and the importance of uninterrupted power and management software.<br><br>Beyond hardware, the book examines access control models and security policies, highlighting discretionary, mandatory, role-based, and rule-based controls. It explores integration with CCTV and alarm systems, illustrating how video verification and intrusion detection enhance security. The management chapter outlines command and control centres, real-time monitoring, audit trails, and database management. The system lifecycle section guides readers through planning, design, installation, commissioning, administration, and maintenance, emphasizing best practices, project management, and lifecycle management. Specialized environments such as data centres, financial institutions, healthcare, educational campuses, and multitenant buildings receive tailored attention. The book also discusses the convergence of physical and logical access control, exploring identity and access management and cybersecurity considerations. Finally, it looks forward to the future of access control, examining cloud-based systems, AI, advanced biometrics, blockchain identity management, robotics, drones, and the ethical and regulatory challenges ahead. Through detailed chapters, the book blends theoretical foundations with real-world applications and emerging trends, providing a definitive resource for securing physical perimeters effectively.",
+                "url": "#",
+                "price": "15.00",
+                "image": "https://res.cloudinary.com/dn4dszfra/image/upload/v1771176315/macha-school/author-portfolio/Images/macha-school/author-portfolio/Images/securing_the_perimeter.png",
+                "category": "Security",
+                "year": "2026",
+                "rating": 0,
+                "reviewCount": 0,
+                "tag": "New",
+                "quote": "A definitive resource for securing physical perimeters effectively.",
+                "reviews": []
+            }
+        };
+
+        // Initialize Supabase (Now handled globally by newsletter.js)
+        const _supabase = window._supabase;
+
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            const params = new URLSearchParams(window.location.search);
+            const title = params.get('title');
+
+            if (title && booksData[title]) {
+                const book = booksData[title];
+
+                // Update Page Title
+                document.title = `${title} | Eric Sambu`;
+
+                // Update Content
+                document.getElementById('book-title').textContent = title;
+                document.getElementById('book-category').textContent = book.category;
+                document.getElementById('book-year').textContent = book.year;
+                // document.getElementById('book-price').textContent = `$${book.price}`; // Element removed
+                const priceEl = document.getElementById('book-price-ebook');
+                if (priceEl) priceEl.textContent = `$${book.price}`;
+
+                // Update Images
+                const img = document.getElementById('book-cover');
+                const coverContainer = img ? img.parentElement : null;
+
+                if (img && coverContainer) {
+                    if (book.image && book.image !== "collection.html") {
+                        img.src = book.image;
+                        img.alt = title;
+                        img.classList.remove('hidden');
+                        // Remove any existing gradient div if present
+                        const existingGradient = coverContainer.querySelector('.gradient-cover');
+                        if (existingGradient) existingGradient.remove();
+                    } else if (book.gradient) {
+                        img.classList.add('hidden');
+                        // Check if gradient already exists
+                        let gradientDiv = coverContainer.querySelector('.gradient-cover');
+                        if (!gradientDiv) {
+                            gradientDiv = document.createElement('div');
+                            gradientDiv.className = `gradient-cover w-full h-full ${book.gradient} flex items-center justify-center p-6 text-center absolute inset-0`;
+                            gradientDiv.innerHTML = `
+                                <div class="border-2 border-white/20 p-4 h-full w-full flex flex-col justify-center">
+                                    <h5 class="font-serif text-2xl text-white mb-2 leading-tight">${title}</h5>
+                                    <div class="w-12 h-1 bg-primary mx-auto"></div>
+                                </div>
+                            `;
+                            coverContainer.appendChild(gradientDiv);
+                        }
+                    }
+                }
+
+                // Update Breadcrumb
+                document.getElementById('breadcrumb-title').textContent = title;
+
+                // Update Synopsis
+                const synopsisContainer = document.getElementById('book-synopsis');
+                if (synopsisContainer) {
+                    synopsisContainer.innerHTML = `<p class="lead text-lg text-slate-300 italic mb-4 border-l-4 border-primary pl-4">${book.description}</p>
+                                                   <p>${book.synopsis}</p>`;
+                }
+
+                // Update Buy Link
+                const buyBtn = document.getElementById('buy-button');
+                const amazonBtn = document.getElementById('amazon-button');
+
+                if (buyBtn) {
+                    buyBtn.href = book.url;
+                }
+
+                if (amazonBtn) {
+                    if (book.amazonUrl) {
+                        amazonBtn.href = book.amazonUrl;
+                        amazonBtn.classList.remove('hidden');
+                        amazonBtn.classList.add('flex');
+                    } else {
+                        amazonBtn.classList.add('hidden');
+                        amazonBtn.classList.remove('flex');
+                    }
+                }
+
+                // Handle Download Button for Free Academic Papers
+                const downloadBtn = document.getElementById('download-button');
+                if (downloadBtn && book.downloadUrl && book.price === 'Free') {
+                    downloadBtn.href = book.downloadUrl;
+                    downloadBtn.download = book.downloadUrl.split('/').pop();
+                    downloadBtn.classList.remove('hidden');
+                    downloadBtn.classList.add('flex');
+
+                    // Hide buy buttons for free papers
+                    if (buyBtn) buyBtn.classList.add('hidden');
+                    if (amazonBtn) amazonBtn.classList.add('hidden');
+                } else if (downloadBtn) {
+                    downloadBtn.classList.add('hidden');
+                    downloadBtn.classList.remove('flex');
+                }
+
+                // Update Hero Section (Dynamic Reviews & Quote)
+                const heroStars = document.getElementById('hero-rating-stars');
+                const heroCount = document.getElementById('hero-review-count');
+                const heroTag = document.getElementById('hero-tag');
+                const heroQuote = document.getElementById('hero-quote');
+
+                if (heroStars) {
+                    if (book.rating > 0) {
+                        heroStars.innerHTML = Array(5).fill(0).map((_, i) => {
+                            if (book.rating >= i + 1) return '<span class="material-icons">star</span>';
+                            if (book.rating >= i + 0.5) return '<span class="material-icons">star_half</span>';
+                            return '<span class="material-icons">star_border</span>';
+                        }).join('');
+                    } else {
+                        heroStars.innerHTML = ''; // No stars for academic papers/unrated
+                    }
+                }
+
+                if (heroCount) {
+                    heroCount.textContent = book.reviewCount > 0 ? `${book.rating} (${book.reviewCount} Reviews)` : '';
+                }
+
+                if (heroTag) {
+                    if (book.tag) {
+                        heroTag.textContent = book.tag;
+                        heroTag.classList.remove('hidden');
+                    } else {
+                        heroTag.classList.add('hidden');
+                    }
+                }
+
+                if (heroQuote) {
+                    heroQuote.textContent = book.quote ? `"${book.quote}"` : '';
+                    if (!book.quote) heroQuote.style.display = 'none';
+                }
+
+                // Fetch Reviews from Supabase
+                async function fetchReviews() {
+                    const { data, error } = await _supabase
+                        .from('reviews')
+                        .select('*')
+                        .eq('book_title', title)
+                        .order('created_at', { ascending: false });
+
+                    if (error) {
+                        console.error('Error fetching reviews:', error);
+                        return [];
+                    }
+                    return data;
+                }
+
+                // Initial load from Supabase
+                const initialReviews = await fetchReviews();
+                renderReviews(initialReviews);
+
+                // Initialize Review Modal Logic
+                const modal = document.getElementById('review-modal');
+                const writeBtn = document.getElementById('write-review-btn');
+                const closeBtn = document.getElementById('close-modal-btn');
+                const reviewForm = document.getElementById('review-form');
+                const starContainer = document.getElementById('star-rating');
+                const ratingInput = document.getElementById('rating-value');
+
+                if (writeBtn && modal) {
+                    writeBtn.addEventListener('click', () => modal.showModal());
+
+                    // Close on backdrop click
+                    modal.addEventListener('click', (e) => {
+                        const rect = modal.getBoundingClientRect();
+                        const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+                            rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+                        if (!isInDialog) {
+                            modal.close();
+                        }
+                    });
+                }
+
+                if (closeBtn && modal) {
+                    closeBtn.addEventListener('click', () => modal.close());
+                }
+
+                // Star Rating Logic
+                if (starContainer) {
+                    const stars = starContainer.querySelectorAll('.material-icons');
+
+                    function updateStars(value) {
+                        stars.forEach((star, index) => {
+                            star.textContent = index < value ? 'star' : 'star_outline';
+                            if (index < value) {
+                                star.classList.add('text-amber-400');
+                                star.classList.remove('text-slate-300');
+                            } else {
+                                star.classList.add('text-slate-300');
+                                star.classList.remove('text-amber-400');
+                            }
+                        });
+                    }
+
+                    stars.forEach(star => {
+                        star.addEventListener('click', () => {
+                            const value = parseInt(star.dataset.value);
+                            if (ratingInput) ratingInput.value = value;
+                            updateStars(value);
+                        });
+                    });
+
+                    // Init
+                    updateStars(5);
+                }
+
+                if (reviewForm) {
+                    reviewForm.addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const submitBtn = reviewForm.querySelector('button[type="submit"]');
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = 'Submitting...';
+                        }
+
+                        const inputs = reviewForm.querySelectorAll('input, textarea');
+                        const name = inputs[0].value;
+                        const rating = ratingInput ? parseFloat(ratingInput.value) : 5;
+                        const text = document.getElementById('review-text').value;
+
+                        // Save to Supabase
+                        const { data, error } = await _supabase
+                            .from('reviews')
+                            .insert([
+                                {
+                                    book_title: title,
+                                    user_name: name,
+                                    rating: parseInt(rating),
+                                    review_text: text
+                                }
+                            ]);
+
+                        if (error) {
+                            alert(`Error submitting review: ${error.message || 'Please try again.'}`);
+                            console.error('Supabase error:', error);
+                        } else {
+                            // Re-fetch and re-render
+                            const updatedReviews = await fetchReviews();
+                            renderReviews(updatedReviews);
+
+                            // Update Review Count (Visual only)
+                            const countEl = document.querySelector('.text-sm.text-slate-300');
+                            if (countEl && countEl.textContent.includes('Reviews')) {
+                                countEl.textContent = `${book.rating} (${updatedReviews.length} Reviews)`;
+                            }
+
+                            // Reset and close
+                            reviewForm.reset();
+                            updateStars(5);
+                            if (ratingInput) ratingInput.value = 5;
+                            modal.close();
+                        }
+
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit Review';
+                        }
+                    });
+                }
+            }
+        });
+
+        function renderReviews(reviews) {
+            const container = document.getElementById('reviews-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (!reviews || reviews.length === 0) {
+                container.innerHTML = '<div class="col-span-3 text-center py-12 bg-primary/5 rounded-xl border border-primary/10"><p class="text-slate-400 italic mb-2">No reviews yet.</p><p class="text-sm font-semibold text-primary">Be the first to share your thoughts!</p></div>';
+                return;
+            }
+
+            reviews.forEach(review => {
+                const starsHtml = Array(5).fill(0).map((_, i) => {
+                    if (review.rating >= i + 1) return '<span class="material-icons text-xs">star</span>';
+                    if (review.rating >= i + 0.5) return '<span class="material-icons text-xs">star_half</span>';
+                    return '<span class="material-icons text-xs">star_outline</span>';
+                }).join('');
+
+                const html = `
+                    <div class="bg-primary/5 p-6 rounded-xl border border-primary/10 h-full flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                             <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                                <span class="material-icons text-primary text-sm">person</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold truncate">${review.user_name}</p>
+                                <div class="flex text-amber-400 text-xs">${starsHtml}</div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-300 italic flex-grow">"${review.review_text}"</p>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+    </script>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[60] bg-background-light dark:bg-background-dark/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8">
+        <button id="close-menu-btn"
+            class="absolute top-6 right-6 p-2 text-slate-900 dark:text-white cursor-pointer hover:rotate-90 transition-transform duration-300">
+            <span class="material-icons text-3xl">close</span>
+        </button>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors" href="index.html">Home</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="collection.html">Publications</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#credentials">Credentials</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#about">About</a>
+        <a class="mobile-link text-2xl font-medium hover:text-primary transition-colors"
+            href="index.html#expertise">Expertise</a>
+        <a href="https://www.linkedin.com/in/eric-sambu-78750b3a/" target="_blank"
+            class="px-8 py-3 bg-primary text-white rounded-full font-bold uppercase tracking-widest hover:bg-primary/90 transition-all">Connect</a>
+    </div>
+
+    <!-- External JavaScript Modules -->
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/newsletter.js"></script>
+    <script>
+        // Page-specific logic remains here
+    </script>
+    <!-- Review Modal -->
+    <dialog id="review-modal"
+        class="bg-transparent p-0 w-full max-w-md backdrop:bg-black/50 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95 backdrop:animate-in backdrop:fade-in outline-none">
+        <div class="bg-background-light dark:bg-[#1a162e] text-slate-900 dark:text-slate-100 rounded-xl shadow-2xl border border-primary/20 p-6 m-4"
+            onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Write a Review</h3>
+                <button id="close-modal-btn"
+                    class="text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <form id="review-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-500">Your Name</label>
+                    <input type="text" required
+                        class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary h-12 outline-none text-slate-900 dark:text-white"
+                        placeholder="John Doe">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-500">Rating</label>
+                    <div class="flex items-center gap-1 text-slate-300">
+                        <div id="star-rating" class="flex gap-1 cursor-pointer">
+                            <span class="material-icons text-3xl hover:text-amber-400 transition-colors"
+                                data-value="1">star_outline</span>
+                            <span class="material-icons text-3xl hover:text-amber-400 transition-colors"
+                                data-value="2">star_outline</span>
+                            <span class="material-icons text-3xl hover:text-amber-400 transition-colors"
+                                data-value="3">star_outline</span>
+                            <span class="material-icons text-3xl hover:text-amber-400 transition-colors"
+                                data-value="4">star_outline</span>
+                            <span class="material-icons text-3xl hover:text-amber-400 transition-colors"
+                                data-value="5">star_outline</span>
+                        </div>
+                        <input type="hidden" id="rating-value" value="5">
+                        <span class="text-xs text-slate-500 ml-2">(Click to rate)</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1 text-slate-500">Your Review</label>
+                    <textarea id="review-text" required rows="4"
+                        class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary resize-none outline-none text-slate-900 dark:text-white"
+                        placeholder="Share your thoughts..."></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-all active:scale-[0.98]">Submit
+                    Review</button>
+            </form>
+        </div>
+    </dialog>
+</body>
+
+
+</html>
