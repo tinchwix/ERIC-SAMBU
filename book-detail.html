@@ -711,11 +711,10 @@
             }
         };
 
-        // Initialize Supabase (Now handled globally by newsletter.js)
-        const _supabase = window._supabase;
-
-
         document.addEventListener("DOMContentLoaded", async function () {
+            // Initialize Supabase from window object (set by newsletter.js)
+            const _supabase = window._supabase;
+
             const params = new URLSearchParams(window.location.search);
             const title = params.get('title');
 
@@ -729,7 +728,6 @@
                 document.getElementById('book-title').textContent = title;
                 document.getElementById('book-category').textContent = book.category;
                 document.getElementById('book-year').textContent = book.year;
-                // document.getElementById('book-price').textContent = `$${book.price}`; // Element removed
                 const priceEl = document.getElementById('book-price-ebook');
                 if (priceEl) priceEl.textContent = `$${book.price}`;
 
@@ -742,12 +740,10 @@
                         img.src = book.image;
                         img.alt = title;
                         img.classList.remove('hidden');
-                        // Remove any existing gradient div if present
                         const existingGradient = coverContainer.querySelector('.gradient-cover');
                         if (existingGradient) existingGradient.remove();
                     } else if (book.gradient) {
                         img.classList.add('hidden');
-                        // Check if gradient already exists
                         let gradientDiv = coverContainer.querySelector('.gradient-cover');
                         if (!gradientDiv) {
                             gradientDiv = document.createElement('div');
@@ -777,9 +773,7 @@
                 const buyBtn = document.getElementById('buy-button');
                 const amazonBtn = document.getElementById('amazon-button');
 
-                if (buyBtn) {
-                    buyBtn.href = book.url;
-                }
+                if (buyBtn) buyBtn.href = book.url;
 
                 if (amazonBtn) {
                     if (book.amazonUrl) {
@@ -799,8 +793,6 @@
                     downloadBtn.download = book.downloadUrl.split('/').pop();
                     downloadBtn.classList.remove('hidden');
                     downloadBtn.classList.add('flex');
-
-                    // Hide buy buttons for free papers
                     if (buyBtn) buyBtn.classList.add('hidden');
                     if (amazonBtn) amazonBtn.classList.add('hidden');
                 } else if (downloadBtn) {
@@ -808,62 +800,115 @@
                     downloadBtn.classList.remove('flex');
                 }
 
-                // Update Hero Section (Dynamic Reviews & Quote)
-                const heroStars = document.getElementById('hero-rating-stars');
-                const heroCount = document.getElementById('hero-review-count');
-                const heroTag = document.getElementById('hero-tag');
-                const heroQuote = document.getElementById('hero-quote');
+                // Fetch and Render Reviews
+                async function loadAllReviews() {
+                    let dynamicReviews = [];
+                    if (_supabase) {
+                        const { data, error } = await _supabase
+                            .from('reviews')
+                            .select('*')
+                            .eq('book_title', title)
+                            .order('created_at', { ascending: false });
 
-                if (heroStars) {
-                    if (book.rating > 0) {
-                        heroStars.innerHTML = Array(5).fill(0).map((_, i) => {
-                            if (book.rating >= i + 1) return '<span class="material-icons">star</span>';
-                            if (book.rating >= i + 0.5) return '<span class="material-icons">star_half</span>';
-                            return '<span class="material-icons">star_border</span>';
+                        if (!error) dynamicReviews = data;
+                        else console.error('Error fetching dynamic reviews:', error);
+                    } else {
+                        console.warn('Supabase not initialized, skipping dynamic reviews.');
+                    }
+
+                    // Merge hardcoded reviews from booksData if they exist
+                    const hardcodedReviews = (book.reviews || []).map(r => ({
+                        user_name: r.name || r.user_name,
+                        rating: r.rating,
+                        review_text: r.text || r.review_text,
+                        is_hardcoded: true
+                    }));
+
+                    const allReviews = [...dynamicReviews, ...hardcodedReviews];
+                    renderReviews(allReviews);
+                    updateHeroStats(allReviews);
+                }
+
+                function updateHeroStats(reviews) {
+                    const heroStars = document.getElementById('hero-rating-stars');
+                    const heroCount = document.getElementById('hero-review-count');
+                    const heroTag = document.getElementById('hero-tag');
+                    const heroQuote = document.getElementById('hero-quote');
+
+                    const totalCount = reviews.length;
+                    const avgRating = totalCount > 0
+                        ? (reviews.reduce((acc, r) => acc + r.rating, 0) / totalCount).toFixed(1)
+                        : 0;
+
+                    if (heroStars) {
+                        if (totalCount > 0) {
+                            heroStars.innerHTML = Array(5).fill(0).map((_, i) => {
+                                if (avgRating >= i + 1) return '<span class="material-icons">star</span>';
+                                if (avgRating >= i + 0.5) return '<span class="material-icons">star_half</span>';
+                                return '<span class="material-icons">star_border</span>';
+                            }).join('');
+                        } else {
+                            heroStars.innerHTML = '';
+                        }
+                    }
+
+                    if (heroCount) {
+                        heroCount.textContent = totalCount > 0 ? `${avgRating} (${totalCount} Reviews)` : '';
+                    }
+
+                    if (heroTag) {
+                        if (book.tag) {
+                            heroTag.textContent = book.tag;
+                            heroTag.classList.remove('hidden');
+                        } else {
+                            heroTag.classList.add('hidden');
+                        }
+                    }
+
+                    if (heroQuote) {
+                        heroQuote.textContent = book.quote ? `"${book.quote}"` : '';
+                        if (!book.quote) heroQuote.style.display = 'none';
+                    }
+                }
+
+                function renderReviews(reviews) {
+                    const container = document.getElementById('reviews-container');
+                    if (!container) return;
+                    container.innerHTML = '';
+
+                    if (!reviews || reviews.length === 0) {
+                        container.innerHTML = '<div class="col-span-3 text-center py-12 bg-primary/5 rounded-xl border border-primary/10"><p class="text-slate-400 italic mb-2">No reviews yet.</p><p class="text-sm font-semibold text-primary">Be the first to share your thoughts!</p></div>';
+                        return;
+                    }
+
+                    reviews.forEach(review => {
+                        const starsHtml = Array(5).fill(0).map((_, i) => {
+                            if (review.rating >= i + 1) return '<span class="material-icons text-xs">star</span>';
+                            return '<span class="material-icons text-xs">star_outline</span>';
                         }).join('');
-                    } else {
-                        heroStars.innerHTML = ''; // No stars for academic papers/unrated
-                    }
+
+                        const html = `
+                            <div class="bg-primary/5 p-6 rounded-xl border border-primary/10 h-full flex flex-col">
+                                <div class="flex items-center gap-4 mb-4">
+                                     <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                                        <span class="material-icons text-primary text-sm">person</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-bold truncate">${review.user_name}</p>
+                                        <div class="flex text-amber-400 text-xs">${starsHtml}</div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-300 italic flex-grow">"${review.review_text}"</p>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', html);
+                    });
                 }
 
-                if (heroCount) {
-                    heroCount.textContent = book.reviewCount > 0 ? `${book.rating} (${book.reviewCount} Reviews)` : '';
-                }
+                // Initial Load
+                await loadAllReviews();
 
-                if (heroTag) {
-                    if (book.tag) {
-                        heroTag.textContent = book.tag;
-                        heroTag.classList.remove('hidden');
-                    } else {
-                        heroTag.classList.add('hidden');
-                    }
-                }
-
-                if (heroQuote) {
-                    heroQuote.textContent = book.quote ? `"${book.quote}"` : '';
-                    if (!book.quote) heroQuote.style.display = 'none';
-                }
-
-                // Fetch Reviews from Supabase
-                async function fetchReviews() {
-                    const { data, error } = await _supabase
-                        .from('reviews')
-                        .select('*')
-                        .eq('book_title', title)
-                        .order('created_at', { ascending: false });
-
-                    if (error) {
-                        console.error('Error fetching reviews:', error);
-                        return [];
-                    }
-                    return data;
-                }
-
-                // Initial load from Supabase
-                const initialReviews = await fetchReviews();
-                renderReviews(initialReviews);
-
-                // Initialize Review Modal Logic
+                // Modal & Form Logic
                 const modal = document.getElementById('review-modal');
                 const writeBtn = document.getElementById('write-review-btn');
                 const closeBtn = document.getElementById('close-modal-btn');
@@ -873,39 +918,23 @@
 
                 if (writeBtn && modal) {
                     writeBtn.addEventListener('click', () => modal.showModal());
-
-                    // Close on backdrop click
                     modal.addEventListener('click', (e) => {
-                        const rect = modal.getBoundingClientRect();
-                        const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-                            rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
-                        if (!isInDialog) {
-                            modal.close();
-                        }
+                        if (e.target === modal) modal.close();
                     });
                 }
 
-                if (closeBtn && modal) {
-                    closeBtn.addEventListener('click', () => modal.close());
-                }
+                if (closeBtn && modal) closeBtn.addEventListener('click', () => modal.close());
 
-                // Star Rating Logic
                 if (starContainer) {
                     const stars = starContainer.querySelectorAll('.material-icons');
-
                     function updateStars(value) {
                         stars.forEach((star, index) => {
-                            star.textContent = index < value ? 'star' : 'star_outline';
-                            if (index < value) {
-                                star.classList.add('text-amber-400');
-                                star.classList.remove('text-slate-300');
-                            } else {
-                                star.classList.add('text-slate-300');
-                                star.classList.remove('text-amber-400');
-                            }
+                            const isFilled = index < value;
+                            star.textContent = isFilled ? 'star' : 'star_outline';
+                            star.classList.toggle('text-amber-400', isFilled);
+                            star.classList.toggle('text-slate-300', !isFilled);
                         });
                     }
-
                     stars.forEach(star => {
                         star.addEventListener('click', () => {
                             const value = parseInt(star.dataset.value);
@@ -913,54 +942,42 @@
                             updateStars(value);
                         });
                     });
-
-                    // Init
-                    updateStars(5);
+                    updateStars(5); // Default
                 }
 
                 if (reviewForm) {
                     reviewForm.addEventListener('submit', async (e) => {
                         e.preventDefault();
+                        if (!_supabase) {
+                            alert('Review system unavailable. Please try again later.');
+                            return;
+                        }
+
                         const submitBtn = reviewForm.querySelector('button[type="submit"]');
                         if (submitBtn) {
                             submitBtn.disabled = true;
                             submitBtn.textContent = 'Submitting...';
                         }
 
-                        const inputs = reviewForm.querySelectorAll('input, textarea');
-                        const name = inputs[0].value;
-                        const rating = ratingInput ? parseFloat(ratingInput.value) : 5;
+                        const nameInput = reviewForm.querySelector('input[type="text"]');
+                        const rating = ratingInput ? parseInt(ratingInput.value) : 5;
                         const text = document.getElementById('review-text').value;
 
-                        // Save to Supabase
-                        const { data, error } = await _supabase
+                        const { error } = await _supabase
                             .from('reviews')
-                            .insert([
-                                {
-                                    book_title: title,
-                                    user_name: name,
-                                    rating: parseInt(rating),
-                                    review_text: text
-                                }
-                            ]);
+                            .insert([{
+                                book_title: title,
+                                user_name: nameInput.value,
+                                rating: rating,
+                                review_text: text
+                            }]);
 
                         if (error) {
-                            alert(`Error submitting review: ${error.message || 'Please try again.'}`);
-                            console.error('Supabase error:', error);
+                            alert(`Error submitting review: ${error.message}`);
                         } else {
-                            // Re-fetch and re-render
-                            const updatedReviews = await fetchReviews();
-                            renderReviews(updatedReviews);
-
-                            // Update Review Count (Visual only)
-                            const countEl = document.querySelector('.text-sm.text-slate-300');
-                            if (countEl && countEl.textContent.includes('Reviews')) {
-                                countEl.textContent = `${book.rating} (${updatedReviews.length} Reviews)`;
-                            }
-
-                            // Reset and close
+                            await loadAllReviews();
                             reviewForm.reset();
-                            updateStars(5);
+                            if (starContainer) updateStars(5);
                             if (ratingInput) ratingInput.value = 5;
                             modal.close();
                         }
@@ -973,41 +990,6 @@
                 }
             }
         });
-
-        function renderReviews(reviews) {
-            const container = document.getElementById('reviews-container');
-            if (!container) return;
-            container.innerHTML = '';
-
-            if (!reviews || reviews.length === 0) {
-                container.innerHTML = '<div class="col-span-3 text-center py-12 bg-primary/5 rounded-xl border border-primary/10"><p class="text-slate-400 italic mb-2">No reviews yet.</p><p class="text-sm font-semibold text-primary">Be the first to share your thoughts!</p></div>';
-                return;
-            }
-
-            reviews.forEach(review => {
-                const starsHtml = Array(5).fill(0).map((_, i) => {
-                    if (review.rating >= i + 1) return '<span class="material-icons text-xs">star</span>';
-                    if (review.rating >= i + 0.5) return '<span class="material-icons text-xs">star_half</span>';
-                    return '<span class="material-icons text-xs">star_outline</span>';
-                }).join('');
-
-                const html = `
-                    <div class="bg-primary/5 p-6 rounded-xl border border-primary/10 h-full flex flex-col">
-                        <div class="flex items-center gap-4 mb-4">
-                             <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
-                                <span class="material-icons text-primary text-sm">person</span>
-                            </div>
-                            <div>
-                                <p class="text-sm font-bold truncate">${review.user_name}</p>
-                                <div class="flex text-amber-400 text-xs">${starsHtml}</div>
-                            </div>
-                        </div>
-                        <p class="text-sm text-slate-300 italic flex-grow">"${review.review_text}"</p>
-                    </div>
-                `;
-                container.insertAdjacentHTML('beforeend', html);
-            });
-        }
     </script>
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu"
