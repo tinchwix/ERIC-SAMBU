@@ -663,9 +663,21 @@
                     <span class="material-icons text-white">close</span>
                 </button>
             </div>
-            <div class="flex-grow relative bg-slate-100 overflow-y-auto flex items-start justify-center p-4">
-                <img id="gallery-modal-image" class="max-w-full h-auto shadow-2xl transition-opacity duration-500"
-                    src="" alt="Gallery Image">
+            <div
+                class="flex-grow relative bg-background-dark/20 overflow-hidden flex items-center justify-center p-4 group">
+                <!-- Navigation Buttons -->
+                <button id="prev-photo"
+                    class="absolute left-4 z-10 w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/80">
+                    <span class="material-icons">chevron_left</span>
+                </button>
+                <button id="next-photo"
+                    class="absolute right-4 z-10 w-12 h-12 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all hover:bg-primary/80">
+                    <span class="material-icons">chevron_right</span>
+                </button>
+
+                <img id="gallery-modal-image"
+                    class="max-w-full max-h-full object-contain shadow-2xl transition-all duration-500 ease-out" src=""
+                    alt="Gallery Image">
             </div>
             <div class="p-4 bg-slate-800 text-center">
                 <p id="gallery-modal-caption" class="text-xs text-white uppercase tracking-widest font-bold"></p>
@@ -734,93 +746,7 @@
     <!-- External JavaScript Modules -->
     <script src="assets/js/navigation.js"></script>
     <script src="assets/js/newsletter.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Page-specific logic remains here
-
-            // About Page Bento Grid Logic
-            const aboutBentoGrid = document.getElementById('about-bento-grid');
-            const galleryModal = document.getElementById('gallery-modal');
-            const galleryModalImg = document.getElementById('gallery-modal-image');
-            const galleryModalCaption = document.getElementById('gallery-modal-caption');
-            const closeGalleryModalBtn = document.getElementById('close-gallery-modal');
-
-            if (aboutBentoGrid && window.galleryData) {
-                // Extended Bento pattern for full gallery
-                const bentoPattern = [
-                    { cols: 6, rows: 3 },  // Extra large hero
-                    { cols: 3, rows: 2 },  // Medium
-                    { cols: 3, rows: 2 },  // Medium
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 5, rows: 3 },  // Large featured
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 3, rows: 2 },  // Medium
-                    { cols: 3, rows: 1 },  // Small
-                    { cols: 3, rows: 1 },  // Small
-                    { cols: 3, rows: 1 },  // Small
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 4, rows: 2 },  // Medium-large
-                    { cols: 4, rows: 2 }   // Medium-large
-                ];
-
-                window.galleryData.forEach((photo, index) => {
-                    const pattern = bentoPattern[index % bentoPattern.length];
-                    const tile = document.createElement('div');
-
-                    // Responsive classes: full width on mobile, half on tablet, Bento on desktop
-                    tile.className = `col-span-1 md:col-span-${Math.ceil(pattern.cols / 2)} lg:col-span-${pattern.cols} row-span-${pattern.rows} rounded-2xl overflow-hidden group cursor-pointer relative bg-slate-900 shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500`;
-
-                    tile.innerHTML = `
-                        <div class="w-full h-full relative overflow-hidden">
-                            <img src="${photo.url}" alt="${photo.caption}" 
-                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div class="absolute bottom-4 left-4 right-4">
-                                    <span class="text-xs uppercase tracking-widest text-primary font-bold mb-2 block">${photo.category}</span>
-                                    <p class="text-white font-serif text-sm line-clamp-2">${photo.caption}</p>
-                                </div>
-                            </div>
-                            <div class="absolute top-4 right-4 w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
-                                <span class="material-icons text-white">zoom_in</span>
-                            </div>
-                        </div>
-                    `;
-
-                    tile.onclick = () => openPhoto(photo.url, photo.caption);
-                    aboutBentoGrid.appendChild(tile);
-                });
-            }
-
-            function openPhoto(url, caption) {
-                galleryModalImg.src = url;
-                galleryModalCaption.innerText = caption;
-                galleryModal.classList.remove('hidden');
-                document.body.classList.add('overflow-hidden');
-            }
-
-            function closeGalleryModal() {
-                galleryModal.classList.add('hidden');
-                galleryModalImg.src = "";
-                document.body.classList.remove('overflow-hidden');
-            }
-
-            if (closeGalleryModalBtn) closeGalleryModalBtn.addEventListener('click', closeGalleryModal);
-
-            // Close on escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeGalleryModal();
-            });
-
-            // Close on backdrop click
-            if (galleryModal) {
-                galleryModal.addEventListener('click', (e) => {
-                    if (e.target === galleryModal) closeGalleryModal();
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/gallery-lightbox.js"></script>
 </body>
 
 </html>
